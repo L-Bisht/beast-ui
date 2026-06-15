@@ -1,0 +1,44 @@
+.surface {
+  background-color: var(--beast-color-surface, #ffffff);
+  color: var(--beast-color-on-surface, #121212);
+  transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+/* Elevation */
+.elevation-0 {
+  box-shadow: none;
+}
+.elevation-1 {
+  box-shadow: var(--beast-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+}
+.elevation-2 {
+  box-shadow: var(--beast-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06));
+}
+.elevation-3 {
+  box-shadow: var(--beast-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+}
+.elevation-4 {
+  box-shadow: var(--beast-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04));
+}
+
+/* Radius */
+.radius-none {
+  border-radius: 0;
+}
+.radius-sm {
+  border-radius: var(--beast-radius-sm, 2px);
+}
+.radius-md {
+  border-radius: var(--beast-radius-md, 4px);
+}
+.radius-lg {
+  border-radius: var(--beast-radius-lg, 8px);
+}
+.radius-full {
+  border-radius: 9999px;
+}
+
+/* Bordered */
+.bordered {
+  border: 1px solid var(--beast-color-border, #e5e7eb);
+}

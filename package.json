@@ -1,0 +1,41 @@
+{
+  "name": "beast-ui-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter playground dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "dev:playground": "pnpm --filter playground dev",
+    "dev:storybook": "pnpm --filter @beast-ui/storybook dev",
+    "storybook": "pnpm --filter @beast-ui/storybook dev",
+    "build:storybook": "pnpm --filter @beast-ui/storybook build",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish",
+    "test:integration": "playwright test",
+    "test:visual": "pnpm --filter @beast-ui/storybook test:visual"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.29.4",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "1.52.0",
+    "@types/node": "^24.12.3",
+    "@vitest/coverage-v8": "^3.2.3",
+    "eslint": "^10.3.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.6.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.2",
+    "vitest": "^3.2.3"
+  },
+  "engines": {
+    "pnpm": ">=10"
+  }
+}

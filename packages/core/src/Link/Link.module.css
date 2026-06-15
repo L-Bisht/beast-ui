@@ -1,0 +1,76 @@
+.link {
+  font-family: var(--beast-font-family, system-ui, sans-serif);
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  outline: none;
+  border-radius: var(--beast-radius-xs, 2px);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease, opacity 0.2s ease;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+/* Colors */
+.color-primary {
+  color: var(--beast-color-primary, #007bff);
+  text-decoration-color: var(--beast-color-primary, #007bff);
+}
+.color-primary:hover:not(.disabled) {
+  color: var(--beast-color-primary-dark, #0056b3);
+  text-decoration-color: var(--beast-color-primary-dark, #0056b3);
+}
+
+.color-on-surface {
+  color: var(--beast-color-on-surface, #121212);
+  text-decoration-color: var(--beast-color-on-surface, #121212);
+}
+.color-on-surface:hover:not(.disabled) {
+  color: var(--beast-color-neutral, #6b7280);
+  text-decoration-color: var(--beast-color-neutral, #6b7280);
+}
+
+.color-neutral {
+  color: var(--beast-color-neutral, #6b7280);
+  text-decoration-color: var(--beast-color-neutral, #6b7280);
+}
+.color-neutral:hover:not(.disabled) {
+  color: var(--beast-color-on-surface, #121212);
+  text-decoration-color: var(--beast-color-on-surface, #121212);
+}
+
+.color-inherit {
+  color: inherit;
+  text-decoration-color: inherit;
+}
+
+/* Underline variants */
+.underline-always {
+  text-decoration: underline;
+}
+
+.underline-hover {
+  text-decoration: none;
+}
+.underline-hover:hover:not(.disabled) {
+  text-decoration: underline;
+}
+
+.underline-none {
+  text-decoration: none;
+}
+.underline-none:hover:not(.disabled) {
+  text-decoration: none;
+}
+
+/* Focus styles */
+.link:focus-visible {
+  outline: 2px solid var(--beast-color-primary, #007bff);
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

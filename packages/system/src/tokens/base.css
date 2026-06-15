@@ -1,0 +1,69 @@
+/**
+ * @beast-ui/system — Base tokens: spacing, radius, shadow, typography
+ *
+ * Spacing: 4px base × multiplier scale (--beast-space-1 … --beast-space-12)
+ * Radius:  sm / md / lg / xl / full
+ * Shadow:  sm / md / lg — colored, bold-feeling (not wispy Material elevation)
+ * Typography: family, size (xs–2xl), weight (4 levels), line-height (3 levels)
+ */
+
+:root {
+  /* ─── Spacing ─────────────────────────────────────────────────────────── */
+  /* 4px base × 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24               */
+  --beast-space-1:   4px;
+  --beast-space-2:   8px;
+  --beast-space-3:  12px;
+  --beast-space-4:  16px;
+  --beast-space-5:  20px;
+  --beast-space-6:  24px;
+  --beast-space-7:  32px;
+  --beast-space-8:  40px;
+  --beast-space-9:  48px;
+  --beast-space-10: 64px;
+  --beast-space-11: 80px;
+  --beast-space-12: 96px;
+
+  /* ─── Radius ──────────────────────────────────────────────────────────── */
+  --beast-radius-sm:   4px;
+  --beast-radius-md:   8px;
+  --beast-radius-lg:  12px;
+  --beast-radius-xl:  20px;
+  --beast-radius-full: 9999px;
+
+  /* ─── Shadow ──────────────────────────────────────────────────────────── */
+  /* Colored shadows — violet-tinted for depth, not flat grey lifts      */
+  --beast-shadow-sm:
+    0 1px 3px hsl(270 60% 40% / 0.12),
+    0 1px 2px hsl(270 60% 40% / 0.08);
+
+  --beast-shadow-md:
+    0 4px 12px hsl(270 60% 40% / 0.16),
+    0 2px  6px hsl(270 60% 40% / 0.10);
+
+  --beast-shadow-lg:
+    0 10px 32px hsl(270 60% 40% / 0.22),
+    0  4px 12px hsl(270 60% 40% / 0.14);
+
+  /* ─── Typography ──────────────────────────────────────────────────────── */
+  --beast-font-family:
+    'Inter', ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  /* Font sizes — minor-third scale (×1.25) anchored at 16px            */
+  --beast-font-size-xs:   0.64rem;   /*  ~10px */
+  --beast-font-size-sm:   0.8rem;    /*  ~13px */
+  --beast-font-size-md:   1rem;      /*   16px */
+  --beast-font-size-lg:   1.25rem;   /*   20px */
+  --beast-font-size-xl:   1.563rem;  /*   25px */
+  --beast-font-size-2xl:  1.953rem;  /*   31px */
+
+  /* Font weights */
+  --beast-font-weight-normal:   400;
+  --beast-font-weight-medium:   500;
+  --beast-font-weight-semibold: 600;
+  --beast-font-weight-bold:     700;
+
+  /* Line heights */
+  --beast-line-height-tight:   1.25;
+  --beast-line-height-normal:  1.5;
+  --beast-line-height-relaxed: 1.75;
+}

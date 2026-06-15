@@ -1,0 +1,84 @@
+.progressContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--beast-space-2, 8px);
+  width: 100%;
+}
+
+.labelContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--beast-font-family, system-ui, sans-serif);
+  font-size: var(--beast-font-size-sm, 14px);
+  color: var(--beast-color-on-surface, #121212);
+}
+
+.label {
+  font-weight: 500;
+}
+
+.valueText {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+}
+
+.track {
+  background-color: var(--beast-color-surface-variant, #f3f4f6);
+  border-radius: var(--beast-radius-full, 9999px);
+  overflow: hidden;
+  position: relative;
+  /* Use hardware acceleration for smooth transform animation */
+  transform: translateZ(0); 
+}
+
+.bar {
+  width: 100%;
+  height: 100%;
+  background-color: var(--beast-color-primary, #007bff);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left;
+}
+
+.indeterminate {
+  width: auto;
+  animation: indeterminate-animation 1.5s infinite linear;
+  transform-origin: left;
+}
+
+@keyframes indeterminate-animation {
+  0% {
+    transform: translateX(-100%) scaleX(0.2);
+  }
+  50% {
+    transform: translateX(0) scaleX(0.5);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.2);
+  }
+}
+
+/* Sizes (Track Heights) */
+.sm .track {
+  height: 4px;
+}
+.md .track {
+  height: 8px;
+}
+.lg .track {
+  height: 12px;
+}
+
+/* Colors */
+.primary .bar {
+  background-color: var(--beast-color-primary, #007bff);
+}
+.success .bar {
+  background-color: var(--beast-color-success, #28a745);
+}
+.warning .bar {
+  background-color: var(--beast-color-warning, #ffc107);
+}
+.danger .bar {
+  background-color: var(--beast-color-danger, #dc3545);
+}

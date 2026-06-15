@@ -1,0 +1,141 @@
+/**
+ * @beast-ui/system — Dark mode semantic token overrides
+ *
+ * Three-tier approach:
+ *   1. @media (prefers-color-scheme: dark) :root:not(.beast-light) — OS automatic
+ *   2. .beast-dark   — force dark regardless of OS
+ *   3. .beast-light  — force light regardless of OS (in semantic.css :root block)
+ *
+ * Dark mode is NOT an inverted light mode:
+ *   - Surfaces: gray-800/900 range (not pure black)
+ *   - Colors:   shifted to lighter shades for luminance on dark surfaces
+ *   - Borders:  gray-700 (subtle, not stark)
+ */
+
+/* ─── Shared dark token values ─────────────────────────────────────────────
+   Defined as a SCSS-style comment block for clarity; actual declarations
+   live in the two selectors below. Both blocks are kept identical so the
+   test can verify each independently.                                       */
+
+/* 1. OS-triggered dark mode — respects .beast-light override */
+@media (prefers-color-scheme: dark) {
+  :root:not(.beast-light) {
+    /* Primary (Violet) */
+    --beast-color-primary:       var(--beast-violet-400);
+    --beast-color-primary-light: var(--beast-violet-900);
+    --beast-color-primary-dark:  var(--beast-violet-200);
+
+    /* Secondary (Cyan) */
+    --beast-color-secondary:       var(--beast-cyan-400);
+    --beast-color-secondary-light: var(--beast-cyan-900);
+    --beast-color-secondary-dark:  var(--beast-cyan-200);
+
+    /* Danger (Red) */
+    --beast-color-danger:       var(--beast-red-400);
+    --beast-color-danger-light: var(--beast-red-900);
+    --beast-color-danger-dark:  var(--beast-red-200);
+
+    /* Warning (Orange) */
+    --beast-color-warning:       var(--beast-orange-300);
+    --beast-color-warning-light: var(--beast-orange-900);
+    --beast-color-warning-dark:  var(--beast-orange-200);
+
+    /* Success (Green) */
+    --beast-color-success:       var(--beast-green-400);
+    --beast-color-success-light: var(--beast-green-900);
+    --beast-color-success-dark:  var(--beast-green-200);
+
+    /* Info (Blue) */
+    --beast-color-info:       var(--beast-blue-400);
+    --beast-color-info-light: var(--beast-blue-900);
+    --beast-color-info-dark:  var(--beast-blue-200);
+
+    /* Surface — gray-800/900 range, never pure black */
+    --beast-color-surface:         var(--beast-gray-900);
+    --beast-color-on-surface:      var(--beast-gray-50);
+    --beast-color-surface-variant: var(--beast-gray-800);
+    --beast-color-border:          var(--beast-gray-700);
+    --beast-color-muted:           var(--beast-gray-400);
+  }
+}
+
+/* 2. Forced dark — .beast-dark class on any ancestor element */
+.beast-dark {
+  /* Primary (Violet) */
+  --beast-color-primary:       var(--beast-violet-400);
+  --beast-color-primary-light: var(--beast-violet-900);
+  --beast-color-primary-dark:  var(--beast-violet-200);
+
+  /* Secondary (Cyan) */
+  --beast-color-secondary:       var(--beast-cyan-400);
+  --beast-color-secondary-light: var(--beast-cyan-900);
+  --beast-color-secondary-dark:  var(--beast-cyan-200);
+
+  /* Danger (Red) */
+  --beast-color-danger:       var(--beast-red-400);
+  --beast-color-danger-light: var(--beast-red-900);
+  --beast-color-danger-dark:  var(--beast-red-200);
+
+  /* Warning (Orange) */
+  --beast-color-warning:       var(--beast-orange-300);
+  --beast-color-warning-light: var(--beast-orange-900);
+  --beast-color-warning-dark:  var(--beast-orange-200);
+
+  /* Success (Green) */
+  --beast-color-success:       var(--beast-green-400);
+  --beast-color-success-light: var(--beast-green-900);
+  --beast-color-success-dark:  var(--beast-green-200);
+
+  /* Info (Blue) */
+  --beast-color-info:       var(--beast-blue-400);
+  --beast-color-info-light: var(--beast-blue-900);
+  --beast-color-info-dark:  var(--beast-blue-200);
+
+  /* Surface */
+  --beast-color-surface:         var(--beast-gray-900);
+  --beast-color-on-surface:      var(--beast-gray-50);
+  --beast-color-surface-variant: var(--beast-gray-800);
+  --beast-color-border:          var(--beast-gray-700);
+  --beast-color-muted:           var(--beast-gray-400);
+}
+
+/* 3. Forced light — .beast-light class (semantic.css :root already sets light
+   values; this override ensures a nested .beast-dark ancestor is cancelled) */
+.beast-light {
+  /* Primary (Violet) */
+  --beast-color-primary:       var(--beast-violet-500);
+  --beast-color-primary-light: var(--beast-violet-100);
+  --beast-color-primary-dark:  var(--beast-violet-700);
+
+  /* Secondary (Cyan) */
+  --beast-color-secondary:       var(--beast-cyan-500);
+  --beast-color-secondary-light: var(--beast-cyan-100);
+  --beast-color-secondary-dark:  var(--beast-cyan-700);
+
+  /* Danger (Red) */
+  --beast-color-danger:       var(--beast-red-500);
+  --beast-color-danger-light: var(--beast-red-100);
+  --beast-color-danger-dark:  var(--beast-red-700);
+
+  /* Warning (Orange) */
+  --beast-color-warning:       var(--beast-orange-400);
+  --beast-color-warning-light: var(--beast-orange-100);
+  --beast-color-warning-dark:  var(--beast-orange-600);
+
+  /* Success (Green) */
+  --beast-color-success:       var(--beast-green-500);
+  --beast-color-success-light: var(--beast-green-100);
+  --beast-color-success-dark:  var(--beast-green-700);
+
+  /* Info (Blue) */
+  --beast-color-info:       var(--beast-blue-500);
+  --beast-color-info-light: var(--beast-blue-100);
+  --beast-color-info-dark:  var(--beast-blue-700);
+
+  /* Surface */
+  --beast-color-surface:         var(--beast-gray-50);
+  --beast-color-on-surface:      var(--beast-gray-900);
+  --beast-color-surface-variant: var(--beast-gray-100);
+  --beast-color-border:          var(--beast-gray-200);
+  --beast-color-muted:           var(--beast-gray-500);
+}

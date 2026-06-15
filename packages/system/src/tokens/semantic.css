@@ -1,0 +1,52 @@
+/**
+ * @beast-ui/system — Semantic token layer (light mode baseline)
+ *
+ * Maps meaningful role names → scale tokens from colors.css.
+ * Components consume these, never the raw scale tokens directly.
+ *
+ * Pattern:
+ *   --beast-color-{role}          base / default
+ *   --beast-color-{role}-light    hover / subtle backgrounds
+ *   --beast-color-{role}-dark     active / pressed / strong emphasis
+ *
+ * Override any semantic token to retheme without touching scale tokens.
+ */
+
+:root {
+  /* ─── Primary (Violet) ────────────────────────────────────────────────── */
+  --beast-color-primary:       var(--beast-violet-500);
+  --beast-color-primary-light: var(--beast-violet-100);
+  --beast-color-primary-dark:  var(--beast-violet-700);
+
+  /* ─── Secondary (Cyan) ────────────────────────────────────────────────── */
+  --beast-color-secondary:       var(--beast-cyan-500);
+  --beast-color-secondary-light: var(--beast-cyan-100);
+  --beast-color-secondary-dark:  var(--beast-cyan-700);
+
+  /* ─── Danger (Red) ────────────────────────────────────────────────────── */
+  --beast-color-danger:       var(--beast-red-500);
+  --beast-color-danger-light: var(--beast-red-100);
+  --beast-color-danger-dark:  var(--beast-red-700);
+
+  /* ─── Warning (Orange) ────────────────────────────────────────────────── */
+  --beast-color-warning:       var(--beast-orange-400);
+  --beast-color-warning-light: var(--beast-orange-100);
+  --beast-color-warning-dark:  var(--beast-orange-600);
+
+  /* ─── Success (Green) ─────────────────────────────────────────────────── */
+  --beast-color-success:       var(--beast-green-500);
+  --beast-color-success-light: var(--beast-green-100);
+  --beast-color-success-dark:  var(--beast-green-700);
+
+  /* ─── Info (Blue) ─────────────────────────────────────────────────────── */
+  --beast-color-info:       var(--beast-blue-500);
+  --beast-color-info-light: var(--beast-blue-100);
+  --beast-color-info-dark:  var(--beast-blue-700);
+
+  /* ─── Surface ─────────────────────────────────────────────────────────── */
+  --beast-color-surface:         var(--beast-gray-50);
+  --beast-color-on-surface:      var(--beast-gray-900);
+  --beast-color-surface-variant: var(--beast-gray-100);
+  --beast-color-border:          var(--beast-gray-200);
+  --beast-color-muted:           var(--beast-gray-500);
+}

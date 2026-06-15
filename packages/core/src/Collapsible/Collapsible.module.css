@@ -1,0 +1,29 @@
+.collapsible {
+  display: flex;
+  flex-direction: column;
+}
+
+.trigger {
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--beast-color-primary, #007bff);
+  outline-offset: 2px;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.contentWrapper {
+  display: grid;
+  transition: grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contentInner {
+  overflow: hidden;
+}

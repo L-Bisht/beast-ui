@@ -1,0 +1,29 @@
+{
+  "name": "@beast-ui/lab",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint src"
+  },
+  "peerDependencies": {
+    "@beast-ui/core": "workspace:*",
+    "@beast-ui/system": "workspace:*",
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
+  },
+  "devDependencies": {
+    "@beast-ui/core": "workspace:*",
+    "@beast-ui/system": "workspace:*",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3"
+  }
+}

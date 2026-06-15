@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/system" },
+    { "path": "./packages/core" },
+    { "path": "./packages/icons" },
+    { "path": "./packages/lab" },
+    { "path": "./apps/playground" }
+  ]
+}

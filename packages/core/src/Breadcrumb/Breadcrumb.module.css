@@ -1,0 +1,86 @@
+.breadcrumb {
+  font-family: var(--beast-font-family, system-ui, sans-serif);
+  font-size: var(--beast-font-size-sm, 14px);
+  color: var(--beast-color-neutral, #6b7280);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.itemLink {
+  color: var(--beast-color-neutral, #6b7280);
+  text-decoration: none;
+  border-radius: var(--beast-radius-sm, 4px);
+  padding: 2px 4px;
+  margin: -2px -4px;
+  transition: color 0.2s, background-color 0.2s;
+  outline: none;
+}
+
+a.itemLink:hover {
+  color: var(--beast-color-on-surface, #121212);
+  text-decoration: underline;
+  background-color: var(--beast-color-surface-variant, #f3f4f6);
+}
+
+a.itemLink:focus-visible {
+  outline: 2px solid var(--beast-color-primary, #007bff);
+  outline-offset: 2px;
+}
+
+.current {
+  color: var(--beast-color-on-surface, #121212);
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 0 var(--beast-space-2, 8px);
+  color: var(--beast-color-neutral-muted, #9ca3af);
+  user-select: none;
+}
+
+.defaultSeparator {
+  width: 14px;
+  height: 14px;
+}
+
+.ellipsisItem {
+  display: flex;
+  align-items: center;
+}
+
+.ellipsisButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--beast-color-neutral, #6b7280);
+  border-radius: var(--beast-radius-sm, 4px);
+  padding: 0 4px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.ellipsisButton:hover {
+  color: var(--beast-color-on-surface, #121212);
+  background-color: var(--beast-color-surface-variant, #f3f4f6);
+}
+
+.ellipsisButton:focus-visible {
+  outline: 2px solid var(--beast-color-primary, #007bff);
+  outline-offset: 2px;
+}

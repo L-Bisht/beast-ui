@@ -1,0 +1,44 @@
+{
+  "name": "@beast-ui/core",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/src/index.d.ts",
+      "development": "./src/index.ts"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint src"
+  },
+  "peerDependencies": {
+    "@beast-ui/system": "workspace:*",
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
+  },
+  "devDependencies": {
+    "@beast-ui/system": "workspace:*",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@storybook/react": "^8.5.8",
+    "@storybook/test": "^8.5.8",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "jsdom": "^29.1.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "vite": "^8.0.12",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "dependencies": {
+    "react-aria": "^3.49.0",
+    "react-stately": "^3.47.0"
+  }
+}
