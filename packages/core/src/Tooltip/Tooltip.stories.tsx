@@ -22,6 +22,10 @@ export const Default: Story = {
 };
 
 export const Placements: Story = {
+  args: {
+    content: 'Top',
+    children: <Button>Top</Button>,
+  },
   render: () => (
     <div style={{ display: 'flex', gap: '16px' }}>
       <Tooltip content="Top" position="top"><Button>Top</Button></Tooltip>
@@ -33,6 +37,10 @@ export const Placements: Story = {
 };
 
 export const Glass: Story = {
+  args: {
+    content: 'Glass Tooltip',
+    children: <Button variant="glass" color="primary">Hover for Glass Tooltip</Button>,
+  },
   render: () => (
     <div style={{ padding: '40px', background: 'linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%)', borderRadius: '8px' }}>
       <Tooltip content="Glass Tooltip" position="top" variant="glass">

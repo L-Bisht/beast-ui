@@ -10,7 +10,7 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    variant: {
+    shape: {
       control: 'select',
       options: ['text', 'circular', 'rectangular'],
     },
@@ -29,14 +29,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Text: Story = {
   args: {
-    variant: 'text',
+    shape: 'text',
     width: 200,
   },
 };
 
 export const Circular: Story = {
   args: {
-    variant: 'circular',
+    shape: 'circular',
     width: 48,
     height: 48,
   },
@@ -44,7 +44,7 @@ export const Circular: Story = {
 
 export const Rectangular: Story = {
   args: {
-    variant: 'rectangular',
+    shape: 'rectangular',
     width: 300,
     height: 150,
   },
@@ -52,7 +52,7 @@ export const Rectangular: Story = {
 
 export const MultiLineText: Story = {
   args: {
-    variant: 'text',
+    shape: 'text',
     lines: 4,
     width: 300,
   },
@@ -73,7 +73,7 @@ export const CardPlaceholder: Story = {
 
 export const WaveAnimation: Story = {
   args: {
-    variant: 'text',
+    shape: 'text',
     lines: 3,
     width: 300,
     animation: 'wave',

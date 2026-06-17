@@ -11,7 +11,7 @@ describe('Progress Component', () => {
     expect(progress).toHaveAttribute('aria-valuemax', '100');
     
     // Check if the inner bar has the correct width
-    const bar = progress.querySelector('.beast-progress-bar')!;
+    const bar = progress.querySelector('.beast-progress-bar') as HTMLElement;
     expect(bar.style.transform).toBe('translateX(-40%)'); // 60% progress = -40% transform
   });
 

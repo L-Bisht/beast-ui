@@ -30,7 +30,7 @@ export const WithImage: Story = {
 export const Square: Story = {
   args: {
     fallback: 'SQ',
-    variant: 'rounded',
+    shape: 'rounded',
   },
 };
 

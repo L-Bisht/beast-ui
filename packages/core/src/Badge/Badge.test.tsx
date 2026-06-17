@@ -52,20 +52,20 @@ describe('Badge', () => {
 
   it('applies color token to badge', () => {
     const { container } = render(<Badge content={5} color="danger"><div /></Badge>);
-    const badge = container.querySelector('.beast-badge')!;
+    const badge = container.querySelector('.beast-badge') as HTMLElement;
     expect(badge.style.getPropertyValue('background-color')).toBe('var(--beast-color-danger)');
   });
 
   it('positions badge correctly (top-right by default)', () => {
     const { container } = render(<Badge content={5}><div /></Badge>);
-    const badge = container.querySelector('.beast-badge')!;
+    const badge = container.querySelector('.beast-badge') as HTMLElement;
     expect(badge.style.getPropertyValue('top')).toBe('0px');
     expect(badge.style.getPropertyValue('right')).toBe('0px');
   });
 
   it('positions badge bottom-left', () => {
     const { container } = render(<Badge content={5} position="bottom-left"><div /></Badge>);
-    const badge = container.querySelector('.beast-badge')!;
+    const badge = container.querySelector('.beast-badge') as HTMLElement;
     expect(badge.style.getPropertyValue('bottom')).toBe('0px');
     expect(badge.style.getPropertyValue('left')).toBe('0px');
   });

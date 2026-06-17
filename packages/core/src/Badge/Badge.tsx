@@ -3,7 +3,7 @@ import type { ReactNode, CSSProperties } from 'react';
 import { Frame } from '../Frame/Frame.js';
 import type { FrameProps } from '../Frame/Frame.js';
 
-export interface BadgeProps extends Omit<FrameProps<'div'>, 'content'> {
+export interface BadgeProps extends Omit<FrameProps<'div'>, 'content' | 'variant'> {
   content?: ReactNode;
   variant?: 'solid' | 'outlined' | 'soft' | 'dot' | 'glass';
   color?: 'default' | 'primary' | 'danger' | 'warning' | 'success';

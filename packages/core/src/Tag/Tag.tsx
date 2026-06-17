@@ -3,7 +3,7 @@ import { Frame } from '../Frame/Frame.js';
 import type { FrameProps } from '../Frame/Frame.js';
 import styles from './Tag.module.css';
 
-export interface TagProps extends Omit<FrameProps<'div'>, 'color' | 'size'> {
+export interface TagProps extends Omit<FrameProps<'div'>, 'color' | 'size' | 'variant'> {
   variant?: 'filled' | 'outlined' | 'soft' | 'glass';
   color?: 'primary' | 'danger' | 'warning' | 'success' | 'info';
   size?: 'sm' | 'md';

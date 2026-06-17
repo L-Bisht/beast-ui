@@ -11,7 +11,7 @@ export interface TooltipProps {
   delay?: number;
   arrow?: boolean;
   variant?: 'solid' | 'glass';
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
 }
 
 export const Tooltip: React.FC<TooltipProps> = (props) => {

@@ -105,19 +105,19 @@ export const Glassmorphism: Story = {
         justifyContent: 'center',
         borderRadius: '16px',
       }}>
-        <Button onClick={() => { setOpen(true); }} glass glaze={{ frost: 'md', tint: 'light' }}>Open Glass Dialog</Button>
+        <Button onClick={() => { setOpen(true); }} variant="glass" glaze={{ frost: 'md', tint: 'light' }}>Open Glass Dialog</Button>
         <Dialog 
           {...args} 
           open={open} 
           onClose={() => { setOpen(false); }}
           title={<span style={{ color: 'white' }}>Glass Dialog</span>}
           description={<span style={{ color: 'rgba(255,255,255,0.8)' }}>This dialog uses the glassmorphism effect. The background behind the modal is blurred.</span>}
-          glass
+          variant="glass"
           glaze={{ frost: 'lg', tint: 'dark' }}
           style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
         >
           <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
-            <Button glass glaze={{ frost: 'md', tint: 'light' }} onClick={() => { setOpen(false); }}>Close</Button>
+            <Button variant="glass" glaze={{ frost: 'md', tint: 'light' }} onClick={() => { setOpen(false); }}>Close</Button>
           </div>
         </Dialog>
       </div>
