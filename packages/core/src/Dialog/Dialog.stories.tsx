@@ -93,3 +93,34 @@ export const NonDismissable: Story = {
     );
   },
 };
+
+export const Glassmorphism: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    return (
+      <div style={{
+        padding: '100px',
+        background: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)',
+        display: 'flex',
+        justifyContent: 'center',
+        borderRadius: '16px',
+      }}>
+        <Button onClick={() => { setOpen(true); }} glass glaze={{ frost: 'md', tint: 'light' }}>Open Glass Dialog</Button>
+        <Dialog 
+          {...args} 
+          open={open} 
+          onClose={() => { setOpen(false); }}
+          title={<span style={{ color: 'white' }}>Glass Dialog</span>}
+          description={<span style={{ color: 'rgba(255,255,255,0.8)' }}>This dialog uses the glassmorphism effect. The background behind the modal is blurred.</span>}
+          glass
+          glaze={{ frost: 'lg', tint: 'dark' }}
+          style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
+            <Button glass glaze={{ frost: 'md', tint: 'light' }} onClick={() => { setOpen(false); }}>Close</Button>
+          </div>
+        </Dialog>
+      </div>
+    );
+  },
+};

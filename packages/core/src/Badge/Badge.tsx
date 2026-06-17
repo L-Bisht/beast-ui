@@ -5,8 +5,8 @@ import type { FrameProps } from '../Frame/Frame.js';
 
 export interface BadgeProps extends Omit<FrameProps<'div'>, 'content'> {
   content?: ReactNode;
-  variant?: 'standard' | 'dot';
-  color?: 'primary' | 'danger' | 'warning' | 'success';
+  variant?: 'solid' | 'outlined' | 'soft' | 'dot' | 'glass';
+  color?: 'default' | 'primary' | 'danger' | 'warning' | 'success';
   max?: number;
   invisible?: boolean;
   position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
@@ -17,8 +17,8 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   (
     {
       content,
-      variant = 'standard',
-      color = 'primary',
+      variant = 'solid',
+      color = 'default',
       max,
       invisible = false,
       position = 'top-right',
@@ -31,7 +31,7 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   ) => {
     let displayContent: ReactNode = content;
     
-    if (variant === 'standard' && typeof content === 'number' && max !== undefined && content > max) {
+    if (variant !== 'dot' && typeof content === 'number' && max !== undefined && content > max) {
       displayContent = `${max}+`;
     }
 
@@ -50,7 +50,6 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
 
     const badgeStyle: CSSProperties = {
       ...positionStyle,
-      backgroundColor: `var(--beast-color-${color})`,
       display: invisible ? 'none' : 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -64,10 +63,13 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
         minWidth: '20px',
         height: '20px',
         fontSize: '12px',
-        color: 'white',
+        color: variant === 'outlined' ? `var(--beast-color-${color})` : variant === 'soft' || variant === 'glass' ? `var(--beast-color-${color}-dark)` : 'white',
+        backgroundColor: variant === 'outlined' ? 'var(--beast-color-surface)' : variant === 'glass' ? 'transparent' : variant === 'soft' ? `var(--beast-color-${color}-light)` : `var(--beast-color-${color})`,
+        border: variant === 'outlined' ? `1px solid var(--beast-color-${color})` : 'none',
+        ...(variant === 'glass' ? { '--beast-glass-tint': `color-mix(in srgb, var(--beast-color-${color}-light) 40%, transparent)` } : {}),
       }),
       ...style,
-    };
+    } as React.CSSProperties;
 
     const wrapperStyle: CSSProperties = {
       position: 'relative',
@@ -79,7 +81,8 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
         {children}
         {!invisible && (
           <Frame
-            className={['beast-badge', variant === 'dot' ? 'beast-badge-dot' : '', className].filter(Boolean).join(' ')}
+            variant={variant === 'glass' ? 'glass' : 'solid'}
+            className={['beast-badge', `beast-badge-${variant}`, variant === 'dot' ? 'beast-badge-dot' : '', className].filter(Boolean).join(' ')}
             style={badgeStyle}
             {...rest}
           >

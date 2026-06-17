@@ -18,6 +18,12 @@ describe('Button', () => {
     expect(a.href).toContain('#test');
   });
 
+  it('applies solid variant class', () => {
+    const { container } = render(<Button variant={"solid" as any}>Solid</Button>);
+    const btn = container.firstChild as HTMLButtonElement;
+    expect(btn.className).toContain('beast-button-solid');
+  });
+
   it('renders icon-only with specific class when no children', () => {
     const { container } = render(<Button icon={<span data-testid="icon">icon</span>} />);
     const btn = container.firstChild as HTMLButtonElement;
@@ -67,5 +73,17 @@ describe('Button', () => {
     render(<Button ref={ref} id="ref-btn">Ref</Button>);
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
     expect(ref.current?.id).toBe('ref-btn');
+  });
+
+  it('passes variant="glass" prop to underlying Frame', () => {
+    const { container } = render(<Button variant="glass">Glass</Button>);
+    const btn = container.firstChild as HTMLButtonElement;
+    expect(btn.className).toContain('beast-frame-glass');
+  });
+
+  it('passes glaze prop to underlying Frame', () => {
+    const { container } = render(<Button variant="glass" glaze={{ frost: 'lg', tint: 'dark' }}>Glazed</Button>);
+    const btn = container.firstChild as HTMLButtonElement;
+    expect(btn.getAttribute('style')).toContain('--beast-glass-frost: var(--beast-glass-frost-lg)');
   });
 });

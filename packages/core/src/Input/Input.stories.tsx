@@ -61,3 +61,12 @@ export const Disabled: Story = {
     placeholder: 'Not allowed',
   },
 };
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)', borderRadius: '16px', minWidth: '300px' }}>
+      <Input variant="glass" label="Glass Input" placeholder="Type here..." />
+      <Input variant="glass" label="Glass Error" placeholder="Type here..." error="Something went wrong" />
+    </div>
+  ),
+};

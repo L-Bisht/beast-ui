@@ -35,7 +35,7 @@ export const WithHeaderAndFooter: Story = {
     footer: (
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
         <Button variant="ghost">Cancel</Button>
-        <Button variant="filled" color="primary">Create</Button>
+        <Button variant="solid" color="primary">Create</Button>
       </div>
     ),
   },
@@ -60,5 +60,26 @@ export const Outlined: Story = {
     variant: 'outlined',
     style: { width: '300px' },
     children: <Text>An outlined card useful for subtle content grouping.</Text>,
+  },
+};
+
+export const Glassmorphism: Story = {
+  render: (args) => (
+    <div style={{
+      padding: '40px',
+      background: 'linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%)',
+      display: 'flex',
+      justifyContent: 'center',
+      borderRadius: '16px',
+    }}>
+      <Card {...args} />
+    </div>
+  ),
+  args: {
+    variant: 'glass',
+    glaze: { frost: 'md', tint: 'light' },
+    style: { width: '300px', borderColor: 'rgba(255, 255, 255, 0.2)' },
+    header: <Text as="h3" size="lg" weight="bold" style={{ margin: 0, color: 'black' }}>Glass Card</Text>,
+    children: <Text style={{ color: 'black' }}>This card uses the glassmorphism effect. The background blurs the gradient behind it.</Text>,
   },
 };

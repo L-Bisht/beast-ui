@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { Frame } from '../Frame/Frame.js';
 import styles from './Progress.module.css';
 
 export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -8,6 +9,7 @@ export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: 'primary' | 'success' | 'warning' | 'danger';
   label?: string;
   showValue?: boolean;
+  variant?: 'solid' | 'glass';
 }
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
@@ -17,6 +19,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       max = 100,
       size = 'md',
       color = 'primary',
+      variant = 'solid',
       label,
       showValue = false,
       className,
@@ -54,13 +57,15 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
             )}
           </div>
         )}
-        <div
+        <Frame
+          variant={variant === 'glass' ? 'glass' : 'solid'}
           role="progressbar"
           aria-label={label}
           aria-valuenow={isIndeterminate ? undefined : clampedValue}
           aria-valuemin={0}
           aria-valuemax={max}
           className={`beast-progress-track ${styles.track}`}
+          style={{ backgroundColor: variant === 'glass' ? 'transparent' : undefined }}
         >
           <div
             className={`beast-progress-bar ${styles.bar} ${
@@ -70,7 +75,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
               transform: isIndeterminate ? undefined : `translateX(-${100 - percentage}%)`,
             }}
           />
-        </div>
+        </Frame>
       </div>
     );
   }

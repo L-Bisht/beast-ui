@@ -23,3 +23,15 @@ export const Default = () => {
     </RadioGroup>
   );
 };
+
+export const Glassmorphism = () => {
+  const [val, setVal] = useState('1');
+  return (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)', borderRadius: '16px' }}>
+      <RadioGroup label="Glass Options" value={val} onChange={(e) => { setVal(e.target.value); }}>
+        <Radio variant="glass" value="1" label="Glass Option 1" />
+        <Radio variant="glass" value="2" label="Glass Option 2" />
+      </RadioGroup>
+    </div>
+  );
+};

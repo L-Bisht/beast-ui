@@ -1,0 +1,178 @@
+.tag {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--beast-space-2, 8px);
+  border: 1px solid transparent;
+  border-radius: var(--beast-radius-full, 9999px);
+  font-family: var(--beast-font-family, system-ui, sans-serif);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  transform: translateY(-1px);
+}
+
+.clickable:active {
+  transform: translateY(1px);
+}
+
+/* Sizes */
+.sm {
+  padding: var(--beast-space-1, 4px) var(--beast-space-2, 8px);
+  font-size: var(--beast-font-size-xs, 12px);
+  height: 24px;
+}
+
+.md {
+  padding: var(--beast-space-1, 4px) var(--beast-space-3, 12px);
+  font-size: var(--beast-font-size-sm, 14px);
+  height: 32px;
+}
+
+/* Icon */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  display: inline-block;
+}
+
+/* Delete Button */
+.deleteButton {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  margin-right: calc(var(--beast-space-1, 4px) * -1); /* Pull slightly to the right */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: inherit;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity 0.2s, background-color 0.2s;
+  width: 16px;
+  height: 16px;
+}
+
+.deleteButton:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.deleteButton:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* --- Variants & Colors --- */
+
+/* Filled */
+.filled.primary {
+  background-color: var(--beast-color-primary, #3A5A40);
+  color: #FFFFFF;
+}
+.filled.danger {
+  background-color: var(--beast-color-danger, #E07A5F);
+  color: #FFFFFF;
+}
+.filled.warning {
+  background-color: var(--beast-color-warning, #E9C46A);
+  color: #121212;
+}
+.filled.success {
+  background-color: var(--beast-color-success, #588157);
+  color: #FFFFFF;
+}
+.filled.info {
+  background-color: var(--beast-color-info, #3D405B);
+  color: #FFFFFF;
+}
+
+/* Outlined */
+.outlined {
+  background-color: transparent;
+}
+.outlined.primary {
+  border-color: var(--beast-color-primary, #3A5A40);
+  color: var(--beast-color-primary, #3A5A40);
+}
+.outlined.danger {
+  border-color: var(--beast-color-danger, #E07A5F);
+  color: var(--beast-color-danger, #E07A5F);
+}
+.outlined.warning {
+  border-color: var(--beast-color-warning, #E9C46A);
+  color: var(--beast-color-warning, #E9C46A);
+}
+.outlined.success {
+  border-color: var(--beast-color-success, #588157);
+  color: var(--beast-color-success, #588157);
+}
+.outlined.info {
+  border-color: var(--beast-color-info, #3D405B);
+  color: var(--beast-color-info, #3D405B);
+}
+
+/* Soft */
+.soft.primary {
+  background-color: var(--beast-color-primary-light, #A3B18A);
+  color: var(--beast-color-primary-dark, #344E41);
+}
+.soft.danger {
+  background-color: var(--beast-color-danger-light, #F4F1DE);
+  color: var(--beast-color-danger-dark, #3D405B);
+}
+.soft.warning {
+  background-color: var(--beast-color-warning-light, #F4A261);
+  color: var(--beast-color-warning-dark, #E76F51);
+}
+.soft.success {
+  background-color: var(--beast-color-success-light, #A3B18A);
+  color: var(--beast-color-success-dark, #3A5A40);
+}
+.soft.info {
+  background-color: var(--beast-color-info-light, #E2E8F0);
+  color: var(--beast-color-info-dark, #1E293B);
+}
+
+/* Glass */
+.glass.primary {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-primary-light, #A3B18A) 40%, transparent);
+  background-color: transparent;
+  color: var(--beast-color-primary-dark, #344E41);
+}
+.glass.danger {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-danger-light, #F4F1DE) 40%, transparent);
+  background-color: transparent;
+  color: var(--beast-color-danger-dark, #3D405B);
+}
+.glass.warning {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-warning-light, #F4A261) 40%, transparent);
+  background-color: transparent;
+  color: var(--beast-color-warning-dark, #E76F51);
+}
+.glass.success {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-success-light, #A3B18A) 40%, transparent);
+  background-color: transparent;
+  color: var(--beast-color-success-dark, #3A5A40);
+}
+.glass.info {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-info-light, #E2E8F0) 40%, transparent);
+  background-color: transparent;
+  color: var(--beast-color-info-dark, #1E293B);
+}

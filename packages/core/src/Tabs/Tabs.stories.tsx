@@ -104,6 +104,27 @@ export const Variants: Story = {
   ),
 };
 
+export const Glassmorphism: Story = {
+  args: {
+    children: null,
+  },
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)', borderRadius: '16px', maxWidth: '600px' }}>
+      <Text weight="bold" style={{ marginBottom: '8px', color: 'black' }}>Glass</Text>
+      <Tabs defaultSelectedKey="1" variant="glass">
+        <Tabs.List aria-label="Glass variant">
+          <Tabs.Tab id="1">First</Tabs.Tab>
+          <Tabs.Tab id="2">Second</Tabs.Tab>
+          <Tabs.Tab id="3">Third</Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panel id="1"><Text style={{ color: 'black' }}>Glass panel content 1</Text></Tabs.Panel>
+        <Tabs.Panel id="2"><Text style={{ color: 'black' }}>Glass panel content 2</Text></Tabs.Panel>
+        <Tabs.Panel id="3"><Text style={{ color: 'black' }}>Glass panel content 3</Text></Tabs.Panel>
+      </Tabs>
+    </div>
+  ),
+};
+
 export const Vertical: Story = {
   args: {
     children: null,

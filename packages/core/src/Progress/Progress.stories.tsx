@@ -62,3 +62,17 @@ export const Animated = () => {
 
   return <Progress value={value} label="Animated Progress" showValue />;
 };
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)', borderRadius: '16px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <Progress value={40} variant="glass" color="primary" label="Glass Primary" />
+        <Progress value={60} variant="glass" color="success" label="Glass Success" />
+        <Progress value={80} variant="glass" color="warning" label="Glass Warning" />
+        <Progress value={90} variant="glass" color="danger" label="Glass Danger" />
+        <Progress variant="glass" color="primary" label="Glass Indeterminate" />
+      </div>
+    </div>
+  ),
+};

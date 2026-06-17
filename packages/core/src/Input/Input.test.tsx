@@ -75,4 +75,10 @@ describe('Input', () => {
     expect(ref.current).toBeInstanceOf(HTMLInputElement);
     expect(ref.current?.id).toBe('ref-input');
   });
+
+  it('passes variant="glass" prop to underlying Surface', () => {
+    const { container } = render(<Input variant="glass" />);
+    const surface = container.querySelector('.beast-surface-glass');
+    expect(surface).toBeInTheDocument();
+  });
 });

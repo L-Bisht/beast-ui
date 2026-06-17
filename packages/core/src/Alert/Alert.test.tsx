@@ -17,6 +17,12 @@ describe('Alert Component', () => {
     expect(alert).toHaveClass('beast-alert-danger');
   });
 
+  it('renders default severity', () => {
+    const { getByRole } = render(<Alert severity="default">Default</Alert>);
+    const alert = getByRole('status');
+    expect(alert).toHaveClass('beast-alert-default');
+  });
+
   it('renders title', () => {
     const { getByText } = render(<Alert title="Error Title">Message</Alert>);
     const title = getByText('Error Title');
@@ -46,5 +52,18 @@ describe('Alert Component', () => {
   it('applies variant class correctly', () => {
     const { getByRole } = render(<Alert variant="outlined" severity="success">Success</Alert>);
     expect(getByRole('status')).toHaveClass('beast-alert-outlined');
+  });
+
+  it('applies solid variant instead of filled', () => {
+    // using 'solid' variant (typescript will fail if not defined but we are forcing it here)
+    const { getByRole } = render(<Alert variant={"solid" as any} severity="info">Solid</Alert>);
+    expect(getByRole('status')).toHaveClass('beast-alert-solid');
+  });
+
+  it('passes variant="glass" prop to underlying Surface', () => {
+    const { getByRole } = render(<Alert variant="glass" severity="info">Glass</Alert>);
+    const status = getByRole('status');
+    expect(status).toHaveClass('beast-surface-glass');
+    expect(status).toHaveClass('beast-alert-glass');
   });
 });

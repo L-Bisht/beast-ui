@@ -21,6 +21,17 @@ describe('Badge', () => {
     expect(badge?.className).toContain('beast-badge-dot');
   });
 
+  it('applies standard variants (solid, outlined, soft) and defaults to solid', () => {
+    const { container: container1 } = render(<Badge content={5}><div /></Badge>);
+    expect(container1.querySelector('.beast-badge')).toHaveClass('beast-badge-solid');
+
+    const { container: container2 } = render(<Badge variant={"outlined" as any} content={5}><div /></Badge>);
+    expect(container2.querySelector('.beast-badge')).toHaveClass('beast-badge-outlined');
+
+    const { container: container3 } = render(<Badge variant={"soft" as any} content={5}><div /></Badge>);
+    expect(container3.querySelector('.beast-badge')).toHaveClass('beast-badge-soft');
+  });
+
   it('caps content based on max prop', () => {
     const { container } = render(<Badge content={150} max={99}><div /></Badge>);
     const badge = container.querySelector('.beast-badge');
@@ -57,5 +68,17 @@ describe('Badge', () => {
     const badge = container.querySelector('.beast-badge')!;
     expect(badge.style.getPropertyValue('bottom')).toBe('0px');
     expect(badge.style.getPropertyValue('left')).toBe('0px');
+  });
+
+  it('passes variant="glass" prop to underlying Frame', () => {
+    const { container } = render(<Badge variant="glass" content={5}><div /></Badge>);
+    const badge = container.querySelector('.beast-badge')!;
+    expect(badge).toHaveClass('beast-frame-glass');
+  });
+
+  it('passes glaze prop to underlying Frame', () => {
+    const { container } = render(<Badge variant="glass" glaze={{ frost: 'lg', tint: 'dark' }} content={5}><div /></Badge>);
+    const badge = container.querySelector('.beast-badge')!;
+    expect(badge.getAttribute('style')).toContain('--beast-glass-frost: var(--beast-glass-frost-lg)');
   });
 });

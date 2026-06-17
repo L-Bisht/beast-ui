@@ -67,4 +67,10 @@ describe('Switch', () => {
     expect(ref.current).toBeInstanceOf(HTMLInputElement);
     expect(ref.current?.id).toBe('ref-sw');
   });
+
+  it('passes variant="glass" prop to underlying Frame', () => {
+    const { container } = render(<Switch variant="glass" />);
+    const frame = container.querySelector('.beast-frame-glass');
+    expect(frame).toBeInTheDocument();
+  });
 });

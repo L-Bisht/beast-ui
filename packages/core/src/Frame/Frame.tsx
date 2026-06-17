@@ -14,6 +14,8 @@ export interface FrameOwnProps<E extends ElementType = ElementType> {
   display?: string;
   position?: string;
   overflow?: string;
+  variant?: 'solid' | 'glass';
+  glaze?: { frost?: 'sm' | 'md' | 'lg'; tint?: 'light' | 'dark' | 'none'; };
 }
 
 export type FrameProps<E extends ElementType> = FrameOwnProps<E> &
@@ -32,6 +34,8 @@ export const Frame: FrameComponent = forwardRef(
       display,
       position,
       overflow,
+      variant = 'solid',
+      glaze,
       className,
       style,
       ...rest
@@ -47,9 +51,16 @@ export const Frame: FrameComponent = forwardRef(
       ...(display !== undefined && { display }),
       ...(position !== undefined && { position }),
       ...(overflow !== undefined && { overflow }),
+      ...(glaze?.frost && { '--beast-glass-frost': `var(--beast-glass-frost-${glaze.frost})` } as any),
+      ...(glaze?.tint && { '--beast-glass-tint': `var(--beast-glass-tint-${glaze.tint})` } as any),
     };
 
-    const combinedClassName = [styles.frame, className].filter(Boolean).join(' ');
+    const combinedClassName = [
+      styles.frame,
+      variant === 'glass' && 'beast-frame-glass',
+      variant === 'glass' && styles.glass,
+      className
+    ].filter(Boolean).join(' ');
 
     return (
       <Element

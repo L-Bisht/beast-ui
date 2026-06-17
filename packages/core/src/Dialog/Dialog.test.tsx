@@ -60,4 +60,24 @@ describe('Dialog Component', () => {
     expect(dialog.getAttribute('aria-labelledby')).toBe(title.id);
     expect(dialog.getAttribute('aria-describedby')).toBe(desc.id);
   });
+
+  it('passes variant="glass" prop down to the underlying Surface', () => {
+    const { getByRole } = render(
+      <Dialog open={true} title="Dialog" variant="glass">
+        Glass Dialog
+      </Dialog>
+    );
+    const dialog = getByRole('dialog');
+    expect(dialog).toHaveClass('beast-surface-glass');
+  });
+
+  it('passes glaze prop down to the underlying Surface', () => {
+    const { getByRole } = render(
+      <Dialog open={true} title="Dialog" variant="glass" glaze={{ frost: 'lg', tint: 'dark' }}>
+        Glazed Dialog
+      </Dialog>
+    );
+    const dialog = getByRole('dialog');
+    expect(dialog).toHaveAttribute('style', expect.stringContaining('--beast-glass-frost: var(--beast-glass-frost-lg)'));
+  });
 });

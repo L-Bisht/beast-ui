@@ -8,7 +8,8 @@ export interface AvatarProps extends Omit<FrameProps<'div'>, 'size'> {
   alt?: string;
   name?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
-  variant?: 'circular' | 'rounded';
+  shape?: 'circular' | 'rounded';
+  variant?: 'solid' | 'glass';
   fallback?: ReactNode;
 }
 
@@ -37,7 +38,7 @@ const DefaultPersonIcon = () => (
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   (
-    { src, alt, name, size = 'md', variant = 'circular', fallback, className, style, ...rest },
+    { src, alt, name, size = 'md', shape = 'circular', variant = 'solid', fallback, className, style, ...rest },
     ref
   ) => {
     const [hasError, setHasError] = useState(false);
@@ -51,7 +52,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
 
     const pxSize = sizes[size];
 
-    const borderRadius = variant === 'circular' ? '50%' : 'var(--beast-radius-md)';
+    const borderRadius = shape === 'circular' ? '50%' : 'var(--beast-radius-md)';
 
     const customStyle: CSSProperties = {
       ...style,
@@ -62,7 +63,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'var(--beast-color-surface-variant)',
+      backgroundColor: variant === 'glass' ? 'transparent' : 'var(--beast-color-surface-variant)',
       color: 'var(--beast-color-on-surface)',
       flexShrink: 0,
     };
@@ -81,6 +82,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <Frame
         ref={ref}
+        variant={variant}
         className={className}
         style={Object.keys(customStyle).length > 0 ? customStyle : undefined}
         {...rest}

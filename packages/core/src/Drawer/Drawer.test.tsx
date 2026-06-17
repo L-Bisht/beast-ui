@@ -43,4 +43,14 @@ describe('Drawer Component', () => {
     const { getByRole } = render(<Drawer open={true} size="lg">Content</Drawer>);
     expect(getByRole('dialog')).toHaveClass('beast-drawer-size-lg');
   });
+
+  it('passes variant="glass" prop to underlying Surface', () => {
+    const { getByRole } = render(<Drawer open={true} variant="glass">Content</Drawer>);
+    expect(getByRole('dialog')).toHaveClass('beast-surface-glass');
+  });
+
+  it('passes glaze prop to underlying Surface', () => {
+    const { getByRole } = render(<Drawer open={true} variant="glass" glaze={{ frost: 'lg', tint: 'dark' }}>Content</Drawer>);
+    expect(getByRole('dialog')).toHaveAttribute('style', expect.stringContaining('--beast-glass-frost: var(--beast-glass-frost-lg)'));
+  });
 });

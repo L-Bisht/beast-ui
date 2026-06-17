@@ -136,6 +136,32 @@
   color: var(--beast-color-primary-dark, #0056b3);
 }
 
+/* Glass variant */
+.list-glass {
+  background-color: var(--beast-glass-bg, rgba(255, 255, 255, 0.4));
+  backdrop-filter: blur(var(--beast-glass-frost, 8px));
+  -webkit-backdrop-filter: blur(var(--beast-glass-frost, 8px));
+  padding: var(--beast-space-1, 4px);
+  border-radius: var(--beast-radius-md, 8px);
+  gap: var(--beast-space-1, 4px);
+  border: 1px solid var(--beast-glass-border, rgba(255, 255, 255, 0.2));
+}
+
+.tab-glass {
+  border-radius: var(--beast-radius-sm, 4px);
+  color: inherit;
+  opacity: 0.8;
+}
+.tab-glass:hover:not(.disabled) {
+  opacity: 1;
+}
+.tab-glass.selected {
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: var(--beast-shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+  color: inherit;
+  opacity: 1;
+}
+
 .panel {
   padding: var(--beast-space-4, 16px) 0;
   color: var(--beast-color-on-surface, #121212);

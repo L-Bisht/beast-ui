@@ -90,3 +90,23 @@ export const CustomSize: Story = {
     );
   },
 };
+
+export const Glassmorphism: Story = {
+  render: () => {
+    const [open, setOpen] = useState(false);
+    return (
+      <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)', borderRadius: '16px' }}>
+        <Button variant="glass" glaze={{ frost: 'md', tint: 'light' }} onClick={() => { setOpen(true); }}>Open Glass Drawer</Button>
+        <Drawer 
+          open={open} 
+          onClose={() => { setOpen(false); }}
+          title="Glass Drawer"
+          variant="glass"
+          glaze={{ frost: 'lg', tint: 'light' }}
+        >
+          <Text style={{ color: 'black' }}>This drawer uses the glassmorphism effect.</Text>
+        </Drawer>
+      </div>
+    );
+  },
+};

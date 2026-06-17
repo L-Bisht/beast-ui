@@ -47,10 +47,29 @@ export const Controlled = () => {
       <Collapsible 
         open={isOpen} 
         onOpenChange={setIsOpen}
-        trigger={<Button fullWidth variant={isOpen ? 'soft' : 'filled'}>{isOpen ? 'Close' : 'Open'} Settings</Button>}
+        trigger={<Button fullWidth variant={isOpen ? 'soft' : 'solid'}>{isOpen ? 'Close' : 'Open'} Settings</Button>}
       >
         <Surface padding="4" border style={{ marginTop: '8px' }}>
           <p style={{ margin: 0 }}>You have opened the settings panel.</p>
+        </Surface>
+      </Collapsible>
+    </div>
+  );
+};
+
+export const Glassmorphism = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)', borderRadius: '16px', width: '300px' }}>
+      <Collapsible 
+        variant="glass"
+        open={isOpen} 
+        onOpenChange={setIsOpen}
+        trigger={<Button variant="glass" fullWidth>{isOpen ? 'Close' : 'Open'} Glass Settings</Button>}
+      >
+        <Surface variant="glass" padding="4" style={{ marginTop: '8px' }}>
+          <p style={{ margin: 0, color: 'black' }}>This is the hidden glass content.</p>
         </Surface>
       </Collapsible>
     </div>

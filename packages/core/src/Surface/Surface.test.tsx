@@ -38,4 +38,24 @@ describe('Surface Component', () => {
     const { container } = render(<Surface as="section">Section</Surface>);
     expect(container.firstChild?.nodeName.toLowerCase()).toBe('section');
   });
+
+  it('applies glass class correctly when variant="glass"', () => {
+    const { container } = render(<Surface variant="glass">Glass</Surface>);
+    expect(container.firstChild).toHaveClass('beast-surface-glass');
+  });
+
+  it('does not apply glass class when variant="solid" or undefined', () => {
+    const { container: c1 } = render(<Surface variant="solid">Solid</Surface>);
+    expect(c1.firstChild).not.toHaveClass('beast-surface-glass');
+
+    const { container: c2 } = render(<Surface>Default</Surface>);
+    expect(c2.firstChild).not.toHaveClass('beast-surface-glass');
+  });
+
+  it('applies inline styles for glaze prop only when variant="glass"', () => {
+    const { container } = render(<Surface variant="glass" glaze={{ frost: 'lg', tint: 'dark' }}>Glass with glaze</Surface>);
+    const surface = container.firstChild as HTMLElement;
+    expect(surface).toHaveAttribute('style', expect.stringContaining('--beast-glass-frost: var(--beast-glass-frost-lg)'));
+    expect(surface).toHaveAttribute('style', expect.stringContaining('--beast-glass-tint: var(--beast-glass-tint-dark)'));
+  });
 });

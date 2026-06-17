@@ -43,3 +43,16 @@ export const Sizes: Story = {
     </div>
   ),
 };
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)', borderRadius: '16px' }}>
+      <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+        <Avatar variant="glass" color="primary" fallback="PR" />
+        <Avatar variant="glass" color="success" fallback="SU" />
+        <Avatar variant="glass" color="warning" fallback="WA" />
+        <Avatar variant="glass" color="danger" fallback="DA" />
+      </div>
+    </div>
+  ),
+};

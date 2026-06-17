@@ -61,12 +61,12 @@ export const MultiLineText: Story = {
 export const CardPlaceholder: Story = {
   render: () => (
     <Card style={{ width: '300px' }} padding="4">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
-        <Skeleton variant="circular" width={48} height={48} />
-        <Skeleton variant="text" lines={2} width={150} />
+      <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '16px' }}>
+        <Skeleton shape="circular" width={48} height={48} />
+        <Skeleton shape="text" lines={2} width={150} />
       </div>
-      <Skeleton variant="rectangular" height={120} style={{ marginBottom: '16px' }} />
-      <Skeleton variant="text" lines={3} />
+      <Skeleton shape="rectangular" height={120} style={{ marginBottom: '16px' }} />
+      <Skeleton shape="text" lines={3} />
     </Card>
   ),
 };
@@ -78,4 +78,19 @@ export const WaveAnimation: Story = {
     width: 300,
     animation: 'wave',
   },
+};
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', borderRadius: '16px' }}>
+      <Card variant="glass" style={{ width: '300px' }} padding="4">
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '16px' }}>
+          <Skeleton variant="glass" shape="circular" width={48} height={48} />
+          <Skeleton variant="glass" shape="text" lines={2} width={150} />
+        </div>
+        <Skeleton variant="glass" shape="rectangular" height={120} style={{ marginBottom: '16px' }} />
+        <Skeleton variant="glass" shape="text" lines={3} />
+      </Card>
+    </div>
+  ),
 };

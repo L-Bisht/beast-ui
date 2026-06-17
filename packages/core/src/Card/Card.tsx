@@ -6,7 +6,7 @@ import styles from './Card.module.css';
 
 export interface CardOwnProps<E extends ElementType = 'div'> {
   as?: E;
-  variant?: 'elevated' | 'outlined';
+  variant?: 'elevated' | 'outlined' | 'glass';
   padding?: string | number | 'none';
   clickable?: boolean;
   header?: ReactNode;
@@ -37,8 +37,6 @@ export const Card: CardComponent = forwardRef(
     }: CardProps<E>,
     ref: React.Ref<Element>
   ) => {
-    const isOutlined = variant === 'outlined';
-
     const classes = [
       'beast-card',
       styles.card,
@@ -55,8 +53,9 @@ export const Card: CardComponent = forwardRef(
         as={Element as any}
         ref={ref}
         className={classes}
-        elevation={isOutlined ? 0 : 1}
-        border={isOutlined}
+        elevation={variant === 'elevated' ? 1 : 0}
+        border={variant === 'outlined' || variant === 'glass'}
+        variant={variant === 'glass' ? 'glass' : 'solid'}
         radius="lg"
         padding="none" // Card manages its own padding for sections
         {...(rest)}

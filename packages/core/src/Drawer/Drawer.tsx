@@ -14,6 +14,8 @@ export interface DrawerProps extends AriaDialogProps {
   size?: 'sm' | 'md' | 'lg' | string | number;
   closeOnOverlayClick?: boolean;
   closeOnEscape?: boolean;
+  variant?: 'solid' | 'glass';
+  glaze?: { frost?: 'sm' | 'md' | 'lg'; tint?: 'light' | 'dark' | 'none'; };
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
@@ -27,6 +29,8 @@ export const Drawer = ({
   size = 'md',
   closeOnOverlayClick = true,
   closeOnEscape = true,
+  variant = 'solid',
+  glaze,
   children,
   className,
   style,
@@ -97,6 +101,8 @@ export const Drawer = ({
             elevation={4}
             radius="none"
             aria-modal="true"
+            variant={variant === 'glass' ? 'glass' : 'solid'}
+            glaze={glaze}
           >
             {title && (
               <div className={`beast-drawer-header ${styles.header}`}>

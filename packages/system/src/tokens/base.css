@@ -44,6 +44,15 @@
     0 10px 32px hsl(270 60% 40% / 0.22),
     0  4px 12px hsl(270 60% 40% / 0.14);
 
+  /* ─── Glassmorphism ─────────────────────────────────────────────────────── */
+  --beast-glass-frost-sm:   4px;
+  --beast-glass-frost-md:   8px;
+  --beast-glass-frost-lg:  16px;
+
+  --beast-glass-tint-light: rgba(255, 255, 255, 0.4);
+  --beast-glass-tint-dark:  rgba(0, 0, 0, 0.4);
+  --beast-glass-tint-none:  transparent;
+
   /* ─── Typography ──────────────────────────────────────────────────────── */
   --beast-font-family:
     'Inter', ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif;

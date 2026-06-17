@@ -35,3 +35,16 @@ export const Deletable: Story = {
     onDelete: () => { alert('Tag deleted!'); },
   },
 };
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)', borderRadius: '16px' }}>
+      <div style={{ display: 'flex', gap: '8px' }}>
+        <Tag variant="glass" color="primary">Primary</Tag>
+        <Tag variant="glass" color="success">Success</Tag>
+        <Tag variant="glass" color="warning">Warning</Tag>
+        <Tag variant="glass" color="danger" onDelete={() => undefined}>Danger</Tag>
+      </div>
+    </div>
+  ),
+};

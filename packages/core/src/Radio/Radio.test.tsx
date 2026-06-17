@@ -106,4 +106,10 @@ describe('Radio and RadioGroup', () => {
     expect(screen.getByRole('radiogroup').getAttribute('aria-invalid')).toBe('true');
     expect(screen.getByText('Required field')).toBeInTheDocument();
   });
+
+  it('passes variant="glass" prop to underlying Frame', () => {
+    const { container } = render(<Radio value="a" variant="glass" />);
+    const frame = container.querySelector('.beast-frame-glass');
+    expect(frame).toBeInTheDocument();
+  });
 });

@@ -85,6 +85,20 @@ describe('Tabs Component', () => {
     expect(tablist.parentElement).toHaveClass('beast-tabs-outlined');
   });
 
+  it('applies glass variant', () => {
+    const { getByRole } = render(
+      <Tabs defaultSelectedKey="tab1" variant="glass">
+        <Tabs.List>
+          <Tabs.Tab id="tab1">Tab 1</Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panel id="tab1">Content 1</Tabs.Panel>
+      </Tabs>
+    );
+
+    const tablist = getByRole('tablist');
+    expect(tablist.parentElement).toHaveClass('beast-tabs-glass');
+  });
+
   it('disables tabs', () => {
     const { getByRole } = render(
       <Tabs defaultSelectedKey="tab1">

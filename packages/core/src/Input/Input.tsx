@@ -1,11 +1,12 @@
 import { forwardRef, useId, type ReactNode, type InputHTMLAttributes } from 'react';
+import { Surface } from '../Surface/Surface.js';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
   helperText?: ReactNode;
   error?: ReactNode;
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'outlined' | 'filled';
+  variant?: 'outlined' | 'filled' | 'glass';
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
   fullWidth?: boolean;
@@ -79,7 +80,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           </label>
         )}
         
-        <div className={containerClasses} style={{ display: 'flex', alignItems: 'center' }}>
+        <Surface
+          className={containerClasses}
+          variant={variant === 'glass' ? 'glass' : 'solid'}
+          border={variant === 'outlined' || variant === 'glass'}
+          radius="md"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            backgroundColor: variant === 'filled' ? 'var(--beast-color-surface-variant)' : variant === 'glass' ? undefined : 'transparent',
+            padding: 'var(--beast-space-2) var(--beast-space-3)' // Ensure padding is correct for Surface
+          }}
+        >
           {startAdornment && <span className="beast-input-adornment start">{startAdornment}</span>}
           <input
             ref={ref}
@@ -90,11 +102,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-errormessage={isError ? errorId : undefined}
             aria-describedby={describedBy}
             className="beast-input-element"
-            style={{ flex: 1, backgroundColor: 'transparent', border: 'none', outline: 'none' }}
+            style={{ flex: 1, backgroundColor: 'transparent', border: 'none', outline: 'none', minWidth: 0 }}
             {...rest}
           />
           {endAdornment && <span className="beast-input-adornment end">{endAdornment}</span>}
-        </div>
+        </Surface>
 
         {isError ? (
           <div id={errorId} className="beast-input-error-text" style={{ color: 'var(--beast-color-danger)', fontSize: 'var(--beast-font-size-xs)' }}>

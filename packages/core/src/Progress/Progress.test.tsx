@@ -43,4 +43,10 @@ describe('Progress Component', () => {
     const { container } = render(<Progress color="success" />);
     expect(container.firstChild).toHaveClass('beast-progress-success');
   });
+
+  it('passes variant="glass" prop to underlying Frame track', () => {
+    const { container } = render(<Progress variant="glass" />);
+    const frame = container.querySelector('.beast-frame-glass');
+    expect(frame).toBeInTheDocument();
+  });
 });
