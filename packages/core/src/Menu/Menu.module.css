@@ -25,6 +25,19 @@
   transition: background-color 0.1s, color 0.1s;
 }
 
+/* Fix text visibility on glass mode */
+.glassMenu .item {
+  color: inherit;
+}
+.glassMenu .shortcut {
+  color: inherit;
+  opacity: 0.7;
+}
+.glassMenu .sectionHeader {
+  color: inherit;
+  opacity: 0.8;
+}
+
 .item:first-child {
   margin-top: 0;
 }
@@ -34,12 +47,12 @@
 }
 
 .focused {
-  background-color: var(--beast-color-primary-soft, #e6f0ff);
+  background-color: var(--beast-color-primary-light, #e6f0ff);
   color: var(--beast-color-primary-dark, #0056b3);
 }
 
 .pressed {
-  background-color: var(--beast-color-primary-soft, #e6f0ff);
+  background-color: var(--beast-color-primary-light, #e6f0ff);
   opacity: 0.8;
 }
 
@@ -66,7 +79,7 @@
 
 .shortcut {
   font-size: var(--beast-font-size-xs, 12px);
-  color: var(--beast-color-neutral, #6b7280);
+  color: var(--beast-color-muted, #6b7280);
   font-family: monospace;
 }
 
@@ -81,7 +94,7 @@
   padding: var(--beast-space-2, 8px) var(--beast-space-3, 12px);
   font-size: var(--beast-font-size-xs, 12px);
   font-weight: 600;
-  color: var(--beast-color-neutral, #6b7280);
+  color: var(--beast-color-muted, #6b7280);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }

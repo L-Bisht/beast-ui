@@ -36,19 +36,31 @@ export interface MenuProps<T extends object> extends AriaMenuProps<T> {
   trigger: React.ReactElement;
   placement?: 'top' | 'bottom' | 'left' | 'right';
   className?: string;
+  variant?: 'solid' | 'glass';
+  glaze?: { frost?: 'sm' | 'md' | 'lg'; tint?: 'light' | 'dark' | 'none'; };
 }
 
 function MenuPopup({
   state,
   placement: _placement,
   className,
+  variant,
+  glaze,
   ...props
 }: any) {
   const ref = useRef<HTMLUListElement>(null);
   const { menuProps } = useMenu(props, state, ref);
 
   return (
-    <Surface elevation={4} radius="md" padding="1" className={styles.menuPopup}>
+    <Surface 
+      elevation={4} 
+      radius="md" 
+      padding="1" 
+      className={`${styles.menuPopup} ${variant === 'glass' ? styles.glassMenu : ''}`} 
+      variant={variant === 'glass' ? 'glass' : 'solid'} 
+      border={variant === 'glass'}
+      glaze={glaze}
+    >
       <ul {...menuProps} ref={ref} className={`${styles.menu} ${className || ''}`}>
         {[...state.collection].map((item) => {
           if (item.type === 'section') {

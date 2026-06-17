@@ -1,9 +1,10 @@
 import React, { forwardRef, type ReactNode, type KeyboardEvent } from 'react';
 import { Frame } from '../Frame/Frame.js';
 import type { FrameProps } from '../Frame/Frame.js';
+import styles from './Tag.module.css';
 
-export interface TagProps extends Omit<FrameProps<'div'>, 'color' | 'size'> {
-  variant?: 'filled' | 'outlined' | 'soft';
+export interface TagProps extends Omit<FrameProps<'div'>, 'color' | 'size' | 'variant'> {
+  variant?: 'filled' | 'outlined' | 'soft' | 'glass';
   color?: 'primary' | 'danger' | 'warning' | 'success' | 'info';
   size?: 'sm' | 'md';
   onDelete?: () => void;
@@ -22,7 +23,6 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>(
       clickable = false,
       children,
       className,
-      style,
       onClick,
       onKeyDown,
       ...rest
@@ -43,32 +43,37 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>(
     };
 
     const classes = [
+      styles.tag,
+      styles[variant],
+      styles[color],
+      styles[size],
+      clickable && styles.clickable,
+      className,
+      // For backwards compatibility in tests if needed
       'beast-tag',
       `beast-tag-${variant}`,
       `beast-tag-${color}`,
       `beast-tag-${size}`,
-      clickable && 'beast-tag-clickable',
-      className,
     ].filter(Boolean).join(' ');
 
     return (
       <Frame
         ref={ref}
+        variant={variant === 'glass' ? 'glass' : 'solid'}
         className={classes}
         role={clickable ? 'button' : undefined}
         tabIndex={clickable ? 0 : undefined}
         onClick={clickable ? onClick : undefined}
         onKeyDown={clickable ? handleKeyDown : onKeyDown}
         display="inline-flex"
-        style={{ alignItems: 'center', ...style }}
         {...rest}
       >
-        {icon && <span className="beast-tag-icon">{icon}</span>}
-        <span className="beast-tag-label">{children}</span>
+        {icon && <span className={styles.icon}>{icon}</span>}
+        <span className={styles.label}>{children}</span>
         {onDelete && (
           <button
             type="button"
-            className="beast-tag-delete"
+            className={styles.deleteButton}
             aria-label="Remove"
             onClick={handleDelete}
           >

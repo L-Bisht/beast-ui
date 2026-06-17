@@ -1,5 +1,6 @@
 import { useState, useCallback, forwardRef, useId } from 'react';
 import type { ReactNode, CSSProperties, KeyboardEvent } from 'react';
+import { Frame } from '../Frame/Frame.js';
 import styles from './Collapsible.module.css';
 
 export interface CollapsibleProps {
@@ -11,6 +12,7 @@ export interface CollapsibleProps {
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
+  variant?: 'solid' | 'glass';
 }
 
 export const Collapsible = forwardRef<HTMLDivElement, CollapsibleProps>(
@@ -24,6 +26,7 @@ export const Collapsible = forwardRef<HTMLDivElement, CollapsibleProps>(
       children,
       className,
       style,
+      variant = 'solid',
       ...rest
     },
     ref
@@ -53,8 +56,9 @@ export const Collapsible = forwardRef<HTMLDivElement, CollapsibleProps>(
     const contentId = useId();
 
     return (
-      <div 
+      <Frame 
         ref={ref}
+        variant={variant === 'glass' ? 'glass' : 'solid'}
         className={['beast-collapsible', styles.collapsible, className].filter(Boolean).join(' ')} 
         style={style}
         {...rest}
@@ -83,7 +87,7 @@ export const Collapsible = forwardRef<HTMLDivElement, CollapsibleProps>(
             {children}
           </div>
         </div>
-      </div>
+      </Frame>
     );
   }
 );

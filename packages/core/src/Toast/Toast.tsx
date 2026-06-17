@@ -13,10 +13,11 @@ import styles from './Toast.module.css';
 
 let toastIdCounter = 0;
 
-export type ToastSeverity = 'info' | 'success' | 'warning' | 'danger';
+export type ToastSeverity = 'default' | 'info' | 'success' | 'warning' | 'danger';
 
 export interface ToastOptions {
   severity?: ToastSeverity;
+  variant?: 'solid' | 'outlined' | 'soft' | 'glass';
   duration?: number;
   closable?: boolean;
   action?: ReactNode;
@@ -31,6 +32,7 @@ export interface ToastMessage extends ToastOptions {
 interface ToastContextType {
   toast: {
     (message: ReactNode, options?: ToastOptions): string;
+    default: (message: ReactNode, options?: Omit<ToastOptions, 'severity'>) => string;
     info: (message: ReactNode, options?: Omit<ToastOptions, 'severity'>) => string;
     success: (message: ReactNode, options?: Omit<ToastOptions, 'severity'>) => string;
     warning: (message: ReactNode, options?: Omit<ToastOptions, 'severity'>) => string;
@@ -79,7 +81,8 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
       visible: true,
       duration: 5000,
       closable: true,
-      severity: 'info',
+      severity: 'default',
+      variant: 'solid',
       ...options,
     };
 
@@ -90,6 +93,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   const toast = Object.assign(
     (message: ReactNode, options?: ToastOptions) => addToast(message, options),
     {
+      default: (message: ReactNode, options?: Omit<ToastOptions, 'severity'>) => addToast(message, { ...options, severity: 'default' }),
       info: (message: ReactNode, options?: Omit<ToastOptions, 'severity'>) => addToast(message, { ...options, severity: 'info' }),
       success: (message: ReactNode, options?: Omit<ToastOptions, 'severity'>) => addToast(message, { ...options, severity: 'success' }),
       warning: (message: ReactNode, options?: Omit<ToastOptions, 'severity'>) => addToast(message, { ...options, severity: 'warning' }),
@@ -113,6 +117,13 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
 };
 
 const DefaultIcons = {
+  default: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="16" x2="12" y2="12" />
+      <line x1="12" y1="8" x2="12.01" y2="8" />
+    </svg>
+  ),
   info: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="10" />
@@ -164,15 +175,18 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onDismiss }) => {
   }, [toast.duration, toast.visible, isPaused, onDismiss]);
 
   const severityClass = `beast-toast-${toast.severity}`;
+  const variantClass = `beast-toast-${toast.variant}`;
   const animationClass = toast.visible ? styles.enter : styles.exit;
 
   return (
     <Surface
-      className={`beast-toast ${styles.toast} ${styles[toast.severity!]} ${severityClass} ${animationClass}`}
+      className={`beast-toast ${styles.toast} ${styles[toast.severity!]} ${styles[toast.variant!]} ${severityClass} ${variantClass} ${animationClass}`}
       role="status"
       aria-live="polite"
       elevation={3}
       radius="md"
+      border={toast.variant === 'outlined' || toast.variant === 'glass'}
+      variant={toast.variant === 'glass' ? 'glass' : 'solid'}
       onMouseEnter={() => { setIsPaused(true); }}
       onMouseLeave={() => { setIsPaused(false); }}
     >

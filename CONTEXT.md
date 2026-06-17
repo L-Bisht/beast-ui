@@ -28,9 +28,13 @@ _Avoid_: ThemeProvider (MUI term), ThemeContext
 A consumer-supplied value that replaces a default design token, applied via CSS or BeastProvider.
 _Avoid_: Customization, tweak
 
+**Variant**:
+The primary visual style of a component. Glassmorphism is treated as a mutually exclusive variant (`variant="glass"`) rather than a boolean modifier (`glass={true}`). This consistent API applies to both interactive controls (like Button) and structural elements (like Surface).
+_Avoid_: `glass={true}` as a boolean modifier, treating glass as orthogonal to solid/outlined
+
 **Design Language**:
-Beast UI's visual identity: bold, expressive, vibrant default palette, confident spacing, mix of radii, playful but professional motion. Not minimal, not material.
-_Avoid_: Material Design, flat design
+Beast UI's visual identity: "Tactile Calm" (Botanical/Moss palettes, low eye-strain, organic, and physically grounded). Components use distinct 1px structural borders rather than relying entirely on muddy drop shadows, and interactions feature a "Magnetic Press" where elements physically depress. Not vibrant, not minimal, not material.
+_Avoid_: Material Design, flat design, excessively vibrant/bold palettes
 
 ### Component Names (where they differ from industry defaults)
 
@@ -81,4 +85,24 @@ _Avoid_: Accordion, Expander
 **Breadcrumb**:
 A navigation component showing the current page's location in a hierarchy.
 _Avoid_: Breadcrumbs (plural)
+
+**Tabs**:
+A set of interactive controls that swap the content displayed in a related panel.
+_Avoid_: TabContainer, TabBar
+
+**Docs Site**:
+The official, comprehensive documentation and interactive demonstration environment for Beast UI, built as a Vite SPA in `apps/playground`.
+_Avoid_: Playground (deprecated term), Docs App
+
+**Glaze**:
+The configuration prop for customizing the glassmorphism effect (blur and tint) on surface-level components.
+_Avoid_: GlassProps, GlassConfig, blur settings
+
+**Frost**:
+The degree of blur applied to the backdrop in a glassmorphic element, defining how opaque or transparent the glass appears physically.
+_Avoid_: Blur, backdrop-filter
+
+**Tint**:
+The color mix and opacity applied to the background of a glassmorphic element, simulating light passing through colored glass.
+_Avoid_: Opacity, background-color transparency
 

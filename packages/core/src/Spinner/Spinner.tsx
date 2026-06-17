@@ -1,10 +1,12 @@
 import React, { forwardRef } from 'react';
+import { Frame } from '../Frame/Frame.js';
 import styles from './Spinner.module.css';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: 'sm' | 'md' | 'lg' | number;
   color?: 'primary' | 'on-surface' | 'inherit';
   label?: string;
+  variant?: 'solid' | 'glass';
 }
 
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
@@ -13,6 +15,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
       size = 'md',
       color = 'inherit',
       label = 'Loading',
+      variant = 'solid',
       className,
       style,
       ...rest
@@ -36,8 +39,9 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
       : style;
 
     return (
-      <div
+      <Frame
         ref={ref}
+        variant={variant === 'glass' ? 'glass' : 'solid'}
         className={classes}
         style={customStyle}
         role="status"
@@ -68,7 +72,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
         <span className={`beast-visually-hidden ${styles.visuallyHidden}`}>
           {label}
         </span>
-      </div>
+      </Frame>
     );
   }
 );

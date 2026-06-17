@@ -32,3 +32,11 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)', borderRadius: '16px' }}>
+      <Switch variant="glass" label="Glass Switch" defaultChecked />
+    </div>
+  ),
+};

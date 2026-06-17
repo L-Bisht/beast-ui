@@ -35,7 +35,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    variant: 'filled',
+    variant: 'solid',
     color: 'primary',
     children: 'Button',
   },
@@ -66,7 +66,7 @@ export const Ghost: Story = {
 
 export const Danger: Story = {
   args: {
-    variant: 'filled',
+    variant: 'solid',
     color: 'danger',
     children: 'Delete',
   },
@@ -74,7 +74,7 @@ export const Danger: Story = {
 
 export const Success: Story = {
   args: {
-    variant: 'filled',
+    variant: 'solid',
     color: 'success',
     children: 'Save Changes',
   },
@@ -82,7 +82,7 @@ export const Success: Story = {
 
 export const Loading: Story = {
   args: {
-    variant: 'filled',
+    variant: 'solid',
     color: 'primary',
     loading: true,
     children: 'Loading...',
@@ -91,9 +91,26 @@ export const Loading: Story = {
 
 export const Disabled: Story = {
   args: {
-    variant: 'filled',
+    variant: 'solid',
     color: 'primary',
     disabled: true,
     children: 'Disabled',
   },
+};
+
+export const Glassmorphism: Story = {
+  render: (_args) => (
+    <div style={{
+      padding: '40px',
+      background: 'linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%)',
+      display: 'flex',
+      gap: '16px',
+      justifyContent: 'center',
+      borderRadius: '16px',
+    }}>
+      <Button variant="glass" color="primary">Primary Glass</Button>
+      <Button variant="glass" color="danger">Danger Glass</Button>
+      <Button variant="glass" color="success">Success Glass</Button>
+    </div>
+  ),
 };

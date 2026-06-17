@@ -1,0 +1,5 @@
+# Scan staged files for secrets before committing
+gitleaks protect --staged --redact
+
+# Run ESLint on staged TS/TSX files only (fast — staged files only, not entire repo)
+npx lint-staged

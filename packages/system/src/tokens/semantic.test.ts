@@ -9,7 +9,7 @@ const css = readFileSync(resolve(__dirname, './semantic.css'), 'utf8');
 // ── Expected tokens ──────────────────────────────────────────────────────────
 
 const ROLE_COLORS = [
-  'primary', 'secondary', 'danger', 'warning', 'success', 'info',
+  'primary', 'secondary', 'danger', 'warning', 'success', 'info', 'default',
 ] as const;
 
 const SURFACE_TOKENS = [

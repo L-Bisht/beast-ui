@@ -30,8 +30,8 @@ describe('Radio and RadioGroup', () => {
     };
     render(<TestComponent />);
     
-    const radioA = screen.getByLabelText('Option A');
-    const radioB = screen.getByLabelText('Option B');
+    const radioA = screen.getByLabelText('Option A') as HTMLInputElement;
+    const radioB = screen.getByLabelText('Option B') as HTMLInputElement;
     
     expect(radioA.checked).toBe(true);
     expect(radioB.checked).toBe(false);
@@ -50,7 +50,7 @@ describe('Radio and RadioGroup', () => {
       </RadioGroup>
     );
 
-    const radioB = screen.getByLabelText('Option B');
+    const radioB = screen.getByLabelText('Option B') as HTMLInputElement;
     expect(radioB.checked).toBe(true);
   });
 
@@ -93,7 +93,7 @@ describe('Radio and RadioGroup', () => {
     );
 
     const radios = screen.getAllByRole('radio');
-    radios.forEach(radio => { expect(radio.disabled).toBe(true); });
+    radios.forEach(radio => { expect((radio as HTMLInputElement).disabled).toBe(true); });
   });
 
   it('shows error state on group', () => {
@@ -105,5 +105,11 @@ describe('Radio and RadioGroup', () => {
 
     expect(screen.getByRole('radiogroup').getAttribute('aria-invalid')).toBe('true');
     expect(screen.getByText('Required field')).toBeInTheDocument();
+  });
+
+  it('passes variant="glass" prop to underlying Frame', () => {
+    const { container } = render(<Radio value="a" variant="glass" />);
+    const frame = container.querySelector('.beast-frame-glass');
+    expect(frame).toBeInTheDocument();
   });
 });

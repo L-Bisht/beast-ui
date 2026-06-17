@@ -54,4 +54,24 @@ describe('Frame', () => {
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
     expect(ref.current?.id).toBe('ref-frame');
   });
+
+  it('applies glass class correctly when variant="glass"', () => {
+    const { container } = render(<Frame variant="glass" />);
+    expect(container.firstChild).toHaveClass('beast-frame-glass');
+  });
+
+  it('does not apply glass class when variant="solid" or undefined', () => {
+    const { container: c1 } = render(<Frame variant="solid" />);
+    expect(c1.firstChild).not.toHaveClass('beast-frame-glass');
+
+    const { container: c2 } = render(<Frame />);
+    expect(c2.firstChild).not.toHaveClass('beast-frame-glass');
+  });
+
+  it('applies inline styles for glaze prop only when variant="glass"', () => {
+    const { container } = render(<Frame variant="glass" glaze={{ frost: 'lg', tint: 'dark' }} />);
+    const frame = container.firstChild as HTMLElement;
+    expect(frame).toHaveAttribute('style', expect.stringContaining('--beast-glass-frost: var(--beast-glass-frost-lg)'));
+    expect(frame).toHaveAttribute('style', expect.stringContaining('--beast-glass-tint: var(--beast-glass-tint-dark)'));
+  });
 });

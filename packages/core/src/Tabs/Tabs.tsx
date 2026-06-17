@@ -11,7 +11,7 @@ import React, {
 import styles from './Tabs.module.css';
 
 export type TabsOrientation = 'horizontal' | 'vertical';
-export type TabsVariant = 'underline' | 'filled' | 'outlined';
+export type TabsVariant = 'underline' | 'filled' | 'outlined' | 'glass';
 
 interface TabsContextType {
   selectedKey: string;
@@ -61,31 +61,44 @@ export const TabsRoot = React.forwardRef<HTMLDivElement, TabsProps>(
     
     const isControlled = controlledKey !== undefined;
     const selectedKey = isControlled ? controlledKey : uncontrolledKey;
+    const selectedKeyRef = useRef(selectedKey);
+    selectedKeyRef.current = selectedKey;
 
-    const setSelectedKey = (key: string) => {
+    const handleSetSelectedKey = React.useCallback((key: string) => {
       if (!isControlled) {
         setUncontrolledKey(key);
       }
       onSelectionChange?.(key);
-    };
+    }, [isControlled, onSelectionChange]);
 
     const tabRefs = useRef(new Map<string, HTMLButtonElement>());
     const [keys, setKeys] = useState<string[]>([]);
 
-    const registerTab = (key: string, el: HTMLButtonElement) => {
+    const registerTab = React.useCallback((key: string, el: HTMLButtonElement) => {
       tabRefs.current.set(key, el);
-      setKeys(Array.from(tabRefs.current.keys()));
+      setKeys(prev => {
+        const next = Array.from(tabRefs.current.keys());
+        if (prev.length === next.length && prev.every((k, i) => k === next[i])) return prev;
+        return next;
+      });
       
       // Auto-select first tab if none selected
-      if (!selectedKey && tabRefs.current.size === 1) {
-        setSelectedKey(key);
+      if (!selectedKeyRef.current && tabRefs.current.size === 1) {
+        if (!isControlled) {
+          setUncontrolledKey(key);
+        }
+        onSelectionChange?.(key);
       }
-    };
+    }, [isControlled, onSelectionChange]);
 
-    const unregisterTab = (key: string) => {
+    const unregisterTab = React.useCallback((key: string) => {
       tabRefs.current.delete(key);
-      setKeys(Array.from(tabRefs.current.keys()));
-    };
+      setKeys(prev => {
+        const next = Array.from(tabRefs.current.keys());
+        if (prev.length === next.length && prev.every((k, i) => k === next[i])) return prev;
+        return next;
+      });
+    }, []);
 
     const classes = [
       'beast-tabs',
@@ -101,7 +114,7 @@ export const TabsRoot = React.forwardRef<HTMLDivElement, TabsProps>(
       <TabsContext.Provider
         value={{
           selectedKey,
-          setSelectedKey,
+          setSelectedKey: handleSetSelectedKey,
           orientation,
           variant,
           tabRefs,

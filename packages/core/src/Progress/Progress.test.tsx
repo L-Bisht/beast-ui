@@ -11,7 +11,7 @@ describe('Progress Component', () => {
     expect(progress).toHaveAttribute('aria-valuemax', '100');
     
     // Check if the inner bar has the correct width
-    const bar = progress.querySelector('.beast-progress-bar')!;
+    const bar = progress.querySelector('.beast-progress-bar') as HTMLElement;
     expect(bar.style.transform).toBe('translateX(-40%)'); // 60% progress = -40% transform
   });
 
@@ -42,5 +42,11 @@ describe('Progress Component', () => {
   it('applies color class', () => {
     const { container } = render(<Progress color="success" />);
     expect(container.firstChild).toHaveClass('beast-progress-success');
+  });
+
+  it('passes variant="glass" prop to underlying Frame track', () => {
+    const { container } = render(<Progress variant="glass" />);
+    const frame = container.querySelector('.beast-frame-glass');
+    expect(frame).toBeInTheDocument();
   });
 });

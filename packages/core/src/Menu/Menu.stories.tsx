@@ -80,3 +80,26 @@ export const Placements: Story = {
     </div>
   ),
 };
+
+export const Glassmorphism: Story = {
+  args: {
+    trigger: <Button variant="glass" glaze={{ frost: 'md', tint: 'light' }}>Glass Menu</Button>,
+    children: null,
+  },
+  render: (args) => (
+    <div style={{
+      padding: '40px',
+      background: 'linear-gradient(135deg, #A18CD1 0%, #FBC2EB 100%)',
+      display: 'flex',
+      justifyContent: 'center',
+      borderRadius: '16px',
+    }}>
+      <Menu {...args} variant="glass" glaze={{ frost: 'lg', tint: 'light' }} trigger={<Button variant="glass" glaze={{ frost: 'md', tint: 'light' }}>Glass Menu</Button>}>
+        <Menu.Item key="edit" shortcut="⌘E">Edit</Menu.Item>
+        <Menu.Item key="duplicate" shortcut="⌘D">Duplicate</Menu.Item>
+        <Menu.Separator key="sep1" />
+        <Menu.Item key="delete" shortcut="⌘⌫" disabled>Delete</Menu.Item>
+      </Menu>
+    </div>
+  ),
+};

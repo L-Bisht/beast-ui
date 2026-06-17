@@ -1,3 +1,10 @@
 .frame {
   box-sizing: border-box;
 }
+
+/* Glassmorphism - Tactile Calm */
+.glass {
+  backdrop-filter: blur(var(--beast-glass-frost, var(--beast-glass-frost-md, 8px)));
+  -webkit-backdrop-filter: blur(var(--beast-glass-frost, var(--beast-glass-frost-md, 8px)));
+  background-color: var(--beast-glass-tint, var(--beast-glass-tint-light, rgba(255, 255, 255, 0.4)));
+}

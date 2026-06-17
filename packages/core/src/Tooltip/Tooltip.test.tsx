@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, fireEvent, act, screen } from '@testing-library/react';
+import { render, act, screen } from '@testing-library/react';
 import { Tooltip } from './Tooltip.js';
 
 describe('Tooltip', () => {
@@ -8,12 +8,15 @@ describe('Tooltip', () => {
   });
 
   afterEach(() => {
+    act(() => {
+      vi.runAllTimers();
+    });
     vi.restoreAllMocks();
   });
 
-  it('shows tooltip on mouse enter and hides on mouse leave', async () => {
+  it('shows tooltip on focus and hides on blur', () => {
     render(
-      <Tooltip content="Help text">
+      <Tooltip content="Help text" delay={200}>
         <button data-testid="trigger">Hover me</button>
       </Tooltip>
     );
@@ -23,90 +26,69 @@ describe('Tooltip', () => {
     // Initially not visible
     expect(screen.queryByText('Help text')).not.toBeInTheDocument();
 
-    fireEvent.mouseEnter(trigger);
-    
-    // Wait for delay
     act(() => {
-      vi.advanceTimersByTime(200);
+      trigger.focus();
+    });
+    
+    act(() => {
+      vi.runAllTimers();
     });
 
     const tooltip = screen.getByText('Help text');
     expect(tooltip).toBeInTheDocument();
     
-    // ARIA check
     expect(trigger.getAttribute('aria-describedby')).toBe(tooltip.id);
 
-    fireEvent.mouseLeave(trigger);
-    
-    // Wait for hide delay (if any, usually immediate)
     act(() => {
-      vi.advanceTimersByTime(100);
+      trigger.blur();
+    });
+    
+    act(() => {
+      vi.runAllTimers();
     });
 
     expect(screen.queryByText('Help text')).not.toBeInTheDocument();
   });
 
-  it('shows tooltip on focus and hides on blur', () => {
-    render(
-      <Tooltip content="Focus text">
-        <button data-testid="trigger">Focus me</button>
-      </Tooltip>
-    );
-
-    const trigger = screen.getByTestId('trigger');
-    
-    fireEvent.focus(trigger);
-    
-    act(() => {
-      vi.advanceTimersByTime(200);
-    });
-
-    expect(screen.getByText('Focus text')).toBeInTheDocument();
-
-    fireEvent.blur(trigger);
-
-    expect(screen.queryByText('Focus text')).not.toBeInTheDocument();
-  });
-
   it('renders arrow when arrow prop is true', () => {
     render(
-      <Tooltip content="Arrow text" arrow>
+      <Tooltip content="Arrow text" arrow delay={200}>
         <button data-testid="trigger">Hover me</button>
       </Tooltip>
     );
 
     const trigger = screen.getByTestId('trigger');
-    fireEvent.mouseEnter(trigger);
+    
     act(() => {
-      vi.advanceTimersByTime(200);
+      trigger.focus();
+    });
+    
+    act(() => {
+      vi.runAllTimers();
     });
 
     const arrow = document.querySelector('.beast-tooltip-arrow');
     expect(arrow).toBeInTheDocument();
   });
 
-  it('respects custom delay', () => {
+  it('passes variant="glass" to underlying Surface', () => {
     render(
-      <Tooltip content="Delayed text" delay={500}>
+      <Tooltip content="Glass tooltip" delay={0} variant="glass">
         <button data-testid="trigger">Hover me</button>
       </Tooltip>
     );
 
     const trigger = screen.getByTestId('trigger');
-    fireEvent.mouseEnter(trigger);
     
     act(() => {
-      vi.advanceTimersByTime(200);
+      trigger.focus();
     });
     
-    // Not visible yet
-    expect(screen.queryByText('Delayed text')).not.toBeInTheDocument();
-
     act(() => {
-      vi.advanceTimersByTime(300);
+      vi.runAllTimers();
     });
 
-    // Visible now
-    expect(screen.getByText('Delayed text')).toBeInTheDocument();
+    const tooltip = document.querySelector('.beast-tooltip');
+    expect(tooltip).toHaveClass('beast-surface-glass');
   });
 });

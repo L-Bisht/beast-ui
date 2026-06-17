@@ -42,3 +42,13 @@ export const CompoundAPI = () => (
     </Select.Content>
   </Select.Root>
 );
+
+export const Glassmorphism = () => (
+  <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)', borderRadius: '16px' }}>
+    <Select variant="glass" label="Glass Country" options={[
+      { value: 'us', label: 'United States' },
+      { value: 'ca', label: 'Canada' },
+      { value: 'mx', label: 'Mexico' },
+    ]} />
+  </div>
+);

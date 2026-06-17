@@ -66,13 +66,25 @@ describe('Avatar', () => {
     }
   });
 
-  it('applies border-radius based on variant', () => {
-    const { container: circularContainer } = render(<Avatar variant="circular" />);
+  it('applies border-radius based on shape', () => {
+    const { container: circularContainer } = render(<Avatar shape="circular" />);
     const circular = circularContainer.firstChild as HTMLElement;
     expect(circular.style.getPropertyValue('border-radius')).toBe('50%');
 
-    const { container: roundedContainer } = render(<Avatar variant="rounded" />);
+    const { container: roundedContainer } = render(<Avatar shape="rounded" />);
     const rounded = roundedContainer.firstChild as HTMLElement;
     expect(rounded.style.getPropertyValue('border-radius')).toBe('var(--beast-radius-md)');
+  });
+
+  it('passes variant="glass" prop to underlying Frame', () => {
+    const { container } = render(<Avatar variant="glass" />);
+    const el = container.firstChild as HTMLElement;
+    expect(el).toHaveClass('beast-frame-glass');
+  });
+
+  it('passes glaze prop to underlying Frame', () => {
+    const { container } = render(<Avatar variant="glass" glaze={{ frost: 'lg', tint: 'dark' }} />);
+    const el = container.firstChild as HTMLElement;
+    expect(el.getAttribute('style')).toContain('--beast-glass-frost: var(--beast-glass-frost-lg)');
   });
 });

@@ -1,0 +1,288 @@
+.button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--beast-space-2, 8px);
+  border: 1px solid transparent;
+  border-radius: var(--beast-radius-md, 8px);
+  font-family: var(--beast-font-family, system-ui, sans-serif);
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+/* Interaction States - Magnetic Press */
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: none !important;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.sm {
+  padding: var(--beast-space-1, 4px) var(--beast-space-2, 8px);
+  font-size: var(--beast-font-size-sm, 14px);
+}
+
+.md {
+  padding: var(--beast-space-2, 8px) var(--beast-space-4, 16px);
+  font-size: var(--beast-font-size-md, 16px);
+}
+
+.lg {
+  padding: var(--beast-space-3, 12px) var(--beast-space-6, 24px);
+  font-size: var(--beast-font-size-lg, 20px);
+}
+
+/* Variants & Colors */
+
+/* Solid */
+:global(.beast-button-solid) {
+  color: #FFFFFF;
+  box-shadow: var(--beast-shadow-sm);
+}
+
+:global(.beast-button-solid.beast-button-default) {
+  background-color: var(--beast-color-default, #75807A);
+}
+:global(.beast-button-solid.beast-button-default):hover:not(:disabled) {
+  background-color: var(--beast-color-default-dark, #4b5563);
+  box-shadow: var(--beast-shadow-md);
+}
+
+:global(.beast-button-solid.beast-button-primary) {
+  background-color: var(--beast-color-primary, #3A5A40);
+}
+:global(.beast-button-solid.beast-button-primary):hover:not(:disabled) {
+  background-color: var(--beast-color-primary-dark, #344E41);
+  box-shadow: var(--beast-shadow-md);
+}
+
+:global(.beast-button-solid.beast-button-danger) {
+  background-color: var(--beast-color-danger, #E07A5F);
+}
+:global(.beast-button-solid.beast-button-danger):hover:not(:disabled) {
+  background-color: var(--beast-color-danger-dark, #3D405B);
+  box-shadow: var(--beast-shadow-md);
+}
+
+:global(.beast-button-solid.beast-button-warning) {
+  background-color: var(--beast-color-warning, #E9C46A);
+  color: #121212;
+}
+:global(.beast-button-solid.beast-button-warning):hover:not(:disabled) {
+  background-color: var(--beast-color-warning-dark, #E76F51);
+  box-shadow: var(--beast-shadow-md);
+}
+
+:global(.beast-button-solid.beast-button-success) {
+  background-color: var(--beast-color-success, #588157);
+}
+:global(.beast-button-solid.beast-button-success):hover:not(:disabled) {
+  background-color: var(--beast-color-success-dark, #3A5A40);
+  box-shadow: var(--beast-shadow-md);
+}
+
+/* Outlined */
+:global(.beast-button-outlined) {
+  background-color: transparent;
+}
+
+:global(.beast-button-outlined.beast-button-default) {
+  border-color: var(--beast-color-default, #75807A);
+  color: var(--beast-color-default, #75807A);
+}
+:global(.beast-button-outlined.beast-button-default):hover:not(:disabled) {
+  background-color: var(--beast-color-default-light, #f3f4f6);
+}
+
+:global(.beast-button-outlined.beast-button-primary) {
+  border-color: var(--beast-color-primary, #3A5A40);
+  color: var(--beast-color-primary, #3A5A40);
+}
+:global(.beast-button-outlined.beast-button-primary):hover:not(:disabled) {
+  background-color: var(--beast-color-primary-light, #A3B18A);
+}
+
+:global(.beast-button-outlined.beast-button-danger) {
+  border-color: var(--beast-color-danger, #E07A5F);
+  color: var(--beast-color-danger, #E07A5F);
+}
+:global(.beast-button-outlined.beast-button-danger):hover:not(:disabled) {
+  background-color: var(--beast-color-danger-light, #F4F1DE);
+}
+
+:global(.beast-button-outlined.beast-button-warning) {
+  border-color: var(--beast-color-warning, #E9C46A);
+  color: var(--beast-color-warning, #E9C46A);
+}
+:global(.beast-button-outlined.beast-button-warning):hover:not(:disabled) {
+  background-color: var(--beast-color-warning-light, #F4A261);
+}
+
+:global(.beast-button-outlined.beast-button-success) {
+  border-color: var(--beast-color-success, #588157);
+  color: var(--beast-color-success, #588157);
+}
+:global(.beast-button-outlined.beast-button-success):hover:not(:disabled) {
+  background-color: var(--beast-color-success-light, #A3B18A);
+}
+
+/* Soft */
+:global(.beast-button-soft.beast-button-default) {
+  background-color: var(--beast-color-default-light, #f3f4f6);
+  color: var(--beast-color-default-dark, #4b5563);
+}
+:global(.beast-button-soft.beast-button-default):hover:not(:disabled) {
+  background-color: var(--beast-color-default, #75807A);
+  color: #fff;
+}
+
+:global(.beast-button-soft.beast-button-primary) {
+  background-color: var(--beast-color-primary-light, #A3B18A);
+  color: var(--beast-color-primary-dark, #344E41);
+}
+:global(.beast-button-soft.beast-button-primary):hover:not(:disabled) {
+  background-color: var(--beast-color-primary, #3A5A40);
+  color: #fff;
+}
+
+:global(.beast-button-soft.beast-button-danger) {
+  background-color: var(--beast-color-danger-light, #F4F1DE);
+  color: var(--beast-color-danger-dark, #3D405B);
+}
+:global(.beast-button-soft.beast-button-danger):hover:not(:disabled) {
+  background-color: var(--beast-color-danger, #E07A5F);
+  color: #fff;
+}
+
+:global(.beast-button-soft.beast-button-warning) {
+  background-color: var(--beast-color-warning-light, #F4A261);
+  color: var(--beast-color-warning-dark, #E76F51);
+}
+:global(.beast-button-soft.beast-button-warning):hover:not(:disabled) {
+  background-color: var(--beast-color-warning, #E9C46A);
+  color: #121212;
+}
+
+:global(.beast-button-soft.beast-button-success) {
+  background-color: var(--beast-color-success-light, #A3B18A);
+  color: var(--beast-color-success-dark, #3A5A40);
+}
+:global(.beast-button-soft.beast-button-success):hover:not(:disabled) {
+  background-color: var(--beast-color-success, #588157);
+  color: #fff;
+}
+
+/* Ghost */
+:global(.beast-button-ghost) {
+  background-color: transparent;
+  box-shadow: none;
+}
+:global(.beast-button-ghost.beast-button-default) {
+  color: var(--beast-color-default, #75807A);
+}
+:global(.beast-button-ghost.beast-button-default):hover:not(:disabled) {
+  background-color: var(--beast-color-default-light, #f3f4f6);
+}
+
+:global(.beast-button-ghost.beast-button-primary) {
+  color: var(--beast-color-primary, #3A5A40);
+}
+:global(.beast-button-ghost.beast-button-primary):hover:not(:disabled) {
+  background-color: var(--beast-color-primary-light, #A3B18A);
+}
+
+:global(.beast-button-ghost.beast-button-danger) {
+  color: var(--beast-color-danger, #E07A5F);
+}
+:global(.beast-button-ghost.beast-button-danger):hover:not(:disabled) {
+  background-color: var(--beast-color-danger-light, #F4F1DE);
+}
+
+:global(.beast-button-ghost.beast-button-warning) {
+  color: var(--beast-color-warning, #E9C46A);
+}
+:global(.beast-button-ghost.beast-button-warning):hover:not(:disabled) {
+  background-color: var(--beast-color-warning-light, #F4A261);
+}
+
+:global(.beast-button-ghost.beast-button-success) {
+  color: var(--beast-color-success, #588157);
+}
+:global(.beast-button-ghost.beast-button-success):hover:not(:disabled) {
+  background-color: var(--beast-color-success-light, #A3B18A);
+}
+
+
+/* Icon Only */
+.iconOnly {
+  padding: var(--beast-space-2, 8px);
+}
+
+/* Glass */
+:global(.beast-button-glass.beast-button-default) {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-default-light, #f3f4f6) 40%, transparent);
+  background-color: transparent;
+  color: var(--beast-color-default-dark, #4b5563);
+}
+:global(.beast-button-glass.beast-button-default):hover:not(:disabled) {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-default, #75807A) 40%, transparent);
+  background-color: transparent;
+  color: #111;
+}
+
+:global(.beast-button-glass.beast-button-primary) {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-primary-light, #A3B18A) 40%, transparent);
+  background-color: transparent;
+  color: var(--beast-color-primary-dark, #344E41);
+}
+:global(.beast-button-glass.beast-button-primary):hover:not(:disabled) {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-primary, #3A5A40) 40%, transparent);
+  background-color: transparent;
+  color: #111;
+}
+
+:global(.beast-button-glass.beast-button-danger) {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-danger-light, #F4F1DE) 40%, transparent);
+  background-color: transparent;
+  color: var(--beast-color-danger-dark, #3D405B);
+}
+:global(.beast-button-glass.beast-button-danger):hover:not(:disabled) {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-danger, #E07A5F) 40%, transparent);
+  background-color: transparent;
+  color: #111;
+}
+
+:global(.beast-button-glass.beast-button-warning) {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-warning-light, #F4A261) 40%, transparent);
+  background-color: transparent;
+  color: var(--beast-color-warning-dark, #E76F51);
+}
+:global(.beast-button-glass.beast-button-warning):hover:not(:disabled) {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-warning, #E9C46A) 40%, transparent);
+  background-color: transparent;
+  color: #121212;
+}
+
+:global(.beast-button-glass.beast-button-success) {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-success-light, #A3B18A) 40%, transparent);
+  background-color: transparent;
+  color: var(--beast-color-success-dark, #3A5A40);
+}
+:global(.beast-button-glass.beast-button-success):hover:not(:disabled) {
+  --beast-glass-tint: color-mix(in srgb, var(--beast-color-success, #588157) 40%, transparent);
+  background-color: transparent;
+  color: #111;
+}

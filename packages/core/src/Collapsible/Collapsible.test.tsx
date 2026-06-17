@@ -57,4 +57,13 @@ describe('Collapsible Component', () => {
     fireEvent.click(trigger);
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
   });
+
+  it('passes variant="glass" to underlying Frame', () => {
+    const { container } = render(
+      <Collapsible variant="glass" trigger="Toggle">
+        Glass content
+      </Collapsible>
+    );
+    expect(container.firstChild).toHaveClass('beast-frame-glass');
+  });
 });

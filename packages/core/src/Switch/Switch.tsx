@@ -1,9 +1,11 @@
 import React, { forwardRef, useId, type InputHTMLAttributes, type ReactNode, useState } from 'react';
+import { Frame } from '../Frame/Frame.js';
 
 export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: ReactNode;
   size?: 'sm' | 'md' | 'lg';
   color?: 'primary' | 'success';
+  variant?: 'solid' | 'glass';
 }
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
@@ -12,6 +14,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       label,
       size = 'md',
       color = 'primary',
+      variant = 'solid',
       disabled = false,
       checked: controlledChecked,
       defaultChecked,
@@ -77,18 +80,23 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
             }}
             {...rest}
           />
-          <div
+          <Frame
+            variant={variant === 'glass' ? 'glass' : 'solid'}
             className="beast-switch-track"
             style={{
               width: dimensions.width,
               height: dimensions.height,
-              backgroundColor: checked ? `var(--beast-color-${color})` : 'var(--beast-color-surface-variant)',
+              backgroundColor: variant === 'glass' 
+                ? 'transparent'
+                : (checked ? `var(--beast-color-${color})` : 'var(--beast-color-surface-variant)'),
               borderRadius: '9999px',
               transition: 'background-color 0.2s ease',
               display: 'flex',
               alignItems: 'center',
               padding: '2px',
               boxSizing: 'border-box',
+              border: variant === 'glass' ? '1px solid var(--beast-color-border)' : 'none',
+              ...(variant === 'glass' && checked ? { '--beast-glass-tint': `color-mix(in srgb, var(--beast-color-${color}-light) 40%, transparent)` } as any : {}),
             }}
           >
             <div
@@ -105,7 +113,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
                   : 'translateX(0)',
               }}
             />
-          </div>
+          </Frame>
         </div>
 
         {label && (

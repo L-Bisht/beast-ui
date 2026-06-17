@@ -71,3 +71,30 @@ export const Positions: Story = {
     </div>
   ),
 };
+
+const ToastGlassDemo = () => {
+  const toast = useToast();
+
+  return (
+    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', maxWidth: '600px' }}>
+      <Button variant="glass" glaze={{ frost: 'md', tint: 'light' }} onClick={() => toast('Glass default message', { variant: 'glass' })}>Default</Button>
+      <Button variant="glass" glaze={{ frost: 'md', tint: 'light' }} onClick={() => toast.info('Glass info message!', { variant: 'glass' })}>Info</Button>
+      <Button variant="glass" glaze={{ frost: 'md', tint: 'light' }} onClick={() => toast.success('Glass success message', { variant: 'glass' })}>Success</Button>
+      <Button variant="glass" glaze={{ frost: 'md', tint: 'light' }} onClick={() => toast.warning('Glass warning message', { variant: 'glass' })}>Warning</Button>
+      <Button variant="glass" glaze={{ frost: 'md', tint: 'light' }} onClick={() => toast.danger('Glass danger message', { variant: 'glass' })}>Danger</Button>
+    </div>
+  );
+};
+
+export const Glassmorphism: Story = {
+  args: {
+    children: null,
+  },
+  render: (args) => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)', borderRadius: '16px', minHeight: '300px' }}>
+      <ToastProvider {...args}>
+        <ToastGlassDemo />
+      </ToastProvider>
+    </div>
+  ),
+};

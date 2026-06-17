@@ -55,3 +55,14 @@ export const Bordered: Story = {
     children: 'Bordered Surface',
   },
 };
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)', borderRadius: '16px' }}>
+      <div style={{ display: 'flex', gap: '24px' }}>
+        <Surface variant="glass" padding="4" border><span style={{ color: 'black' }}>Glass Surface</span></Surface>
+        <Surface variant="glass" padding="4" glaze={{ frost: 'lg', tint: 'light' }}><span style={{ color: 'black' }}>Heavily Frosted Glass</span></Surface>
+      </div>
+    </div>
+  ),
+};

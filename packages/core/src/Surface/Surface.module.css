@@ -4,9 +4,14 @@
   transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-/* Elevation */
+/* Elevation - Tactile Calm */
 .elevation-0 {
   box-shadow: none;
+}
+/* All elevated surfaces get a structural border and use the variant background color */
+.elevation-1, .elevation-2, .elevation-3, .elevation-4 {
+  border: 1px solid var(--beast-color-border-structural, rgba(0,0,0,0.05));
+  background-color: var(--beast-color-surface-variant, #ffffff);
 }
 .elevation-1 {
   box-shadow: var(--beast-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
@@ -41,4 +46,11 @@
 /* Bordered */
 .bordered {
   border: 1px solid var(--beast-color-border, #e5e7eb);
+}
+
+/* Glassmorphism - Tactile Calm */
+.glass {
+  backdrop-filter: blur(var(--beast-glass-frost, var(--beast-glass-frost-md, 8px)));
+  -webkit-backdrop-filter: blur(var(--beast-glass-frost, var(--beast-glass-frost-md, 8px)));
+  background-color: var(--beast-glass-tint, var(--beast-glass-tint-light, rgba(255, 255, 255, 0.4)));
 }

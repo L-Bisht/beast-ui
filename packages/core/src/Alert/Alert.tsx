@@ -4,8 +4,8 @@ import { Surface } from '../Surface/Surface.js';
 import styles from './Alert.module.css';
 
 export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
-  severity?: 'info' | 'success' | 'warning' | 'danger';
-  variant?: 'filled' | 'outlined' | 'soft';
+  severity?: 'default' | 'info' | 'success' | 'warning' | 'danger';
+  variant?: 'solid' | 'outlined' | 'soft' | 'glass';
   title?: ReactNode;
   icon?: ReactNode | false;
   closable?: boolean;
@@ -40,12 +40,19 @@ const DefaultIcons = {
       <line x1="9" y1="9" x2="15" y2="15" />
     </svg>
   ),
+  default: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="16" x2="12" y2="12" />
+      <line x1="12" y1="8" x2="12.01" y2="8" />
+    </svg>
+  ),
 };
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   (
     {
-      severity = 'info',
+      severity = 'default',
       variant = 'soft',
       title,
       icon,
@@ -79,7 +86,8 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         role={role}
         elevation={0}
         radius="md"
-        border={variant === 'outlined'}
+        border={variant === 'outlined' || variant === 'glass'}
+        variant={variant === 'glass' ? 'glass' : 'solid'}
         {...rest}
       >
         {IconComponent !== false && (

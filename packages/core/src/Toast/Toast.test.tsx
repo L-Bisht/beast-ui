@@ -6,10 +6,14 @@ function TestComponent() {
   const toast = useToast();
   return (
     <div>
-      <button onClick={() => toast('Standard toast')}>Toast Default</button>
+      <button onClick={() => toast('Standard toast')}>Toast Info</button>
+      <button onClick={() => toast.default('Default toast')}>Toast Default</button>
       <button onClick={() => toast.success('Success toast')}>Toast Success</button>
       <button onClick={() => toast.danger('Danger toast')}>Toast Danger</button>
       <button onClick={() => toast('With action', { action: <button>Undo</button> })}>Toast Action</button>
+      <button onClick={() => toast('Outlined toast', { variant: 'outlined' } as any)}>Toast Outlined</button>
+      <button onClick={() => toast('Soft toast', { variant: 'soft' } as any)}>Toast Soft</button>
+      <button onClick={() => toast('Glass toast', { variant: 'glass' } as any)}>Toast Glass</button>
     </div>
   );
 }
@@ -31,7 +35,7 @@ describe('Toast Component', () => {
       </ToastProvider>
     );
 
-    fireEvent.click(getByText('Toast Default'));
+    fireEvent.click(getByText('Toast Info'));
 
     expect(getByText('Standard toast')).toBeInTheDocument();
 
@@ -47,17 +51,43 @@ describe('Toast Component', () => {
     expect(queryByText('Standard toast')).not.toBeInTheDocument();
   });
 
-  it('renders severities', () => {
+  it('renders severities and defaults to solid variant', () => {
     const { getByText } = render(
       <ToastProvider>
         <TestComponent />
       </ToastProvider>
     );
 
+    fireEvent.click(getByText('Toast Default'));
+    const defaultToast = getByText('Default toast').closest('.beast-toast-default');
+    expect(defaultToast).toBeInTheDocument();
+    expect(defaultToast).toHaveClass('beast-toast-solid'); // should default to solid
+
     fireEvent.click(getByText('Toast Success'));
     const successToast = getByText('Success toast').closest('.beast-toast-success');
     expect(successToast).toBeInTheDocument();
     expect(successToast).toHaveAttribute('role', 'status');
+  });
+
+  it('renders specific variants when provided', () => {
+    const { getByText } = render(
+      <ToastProvider>
+        <TestComponent />
+      </ToastProvider>
+    );
+
+    fireEvent.click(getByText('Toast Outlined'));
+    const outlinedToast = getByText('Outlined toast').closest('.beast-toast');
+    expect(outlinedToast).toHaveClass('beast-toast-outlined');
+
+    fireEvent.click(getByText('Toast Soft'));
+    const softToast = getByText('Soft toast').closest('.beast-toast');
+    expect(softToast).toHaveClass('beast-toast-soft');
+
+    fireEvent.click(getByText('Toast Glass'));
+    const glassToast = getByText('Glass toast').closest('.beast-toast');
+    expect(glassToast).toHaveClass('beast-toast-glass');
+    expect(glassToast).toHaveClass('beast-surface-glass');
   });
 
   it('renders an action button', () => {
@@ -78,7 +108,7 @@ describe('Toast Component', () => {
       </ToastProvider>
     );
 
-    fireEvent.click(getByText('Toast Default'));
+    fireEvent.click(getByText('Toast Info'));
     expect(getByText('Standard toast')).toBeInTheDocument();
 
     const closeButton = getByRole('button', { name: /close toast/i });
@@ -98,7 +128,7 @@ describe('Toast Component', () => {
       </ToastProvider>
     );
 
-    fireEvent.click(getByText('Toast Default'));
+    fireEvent.click(getByText('Toast Info'));
     const toastEl = getByText('Standard toast').closest('.beast-toast')!;
 
     // Hover

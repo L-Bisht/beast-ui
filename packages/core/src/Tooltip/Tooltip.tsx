@@ -1,97 +1,69 @@
-import React, { useState, useRef, useEffect, type ReactNode, useCallback } from 'react';
+import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useTooltipTriggerState } from 'react-stately';
+import { useTooltipTrigger, useTooltip, useOverlayPosition, mergeProps } from 'react-aria';
+import { Surface } from '../Surface/Surface.js';
+import styles from './Tooltip.module.css';
 
 export interface TooltipProps {
-  content: ReactNode;
+  content: React.ReactNode;
   position?: 'top' | 'bottom' | 'left' | 'right';
   delay?: number;
   arrow?: boolean;
-  children: React.ReactElement;
+  variant?: 'solid' | 'glass';
+  children: React.ReactElement<any>;
 }
 
-const generateId = () => `tooltip-${Math.random().toString(36).slice(2, 11)}`;
+export const Tooltip: React.FC<TooltipProps> = (props) => {
+  const { content, delay = 200, position = 'top', arrow = false, variant = 'solid', children } = props;
+  
+  const state = useTooltipTriggerState({ delay });
+  const triggerRef = useRef<HTMLElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  
+  const { triggerProps, tooltipProps } = useTooltipTrigger(props, state, triggerRef);
+  
+  const { tooltipProps: ariaTooltipProps } = useTooltip(tooltipProps, state);
+  
+  const { overlayProps, placement } = useOverlayPosition({
+    placement: position,
+    targetRef: triggerRef,
+    overlayRef,
+    offset: arrow ? 8 : 4,
+    isOpen: state.isOpen,
+  });
 
-export const Tooltip: React.FC<TooltipProps> = ({
-  content,
-  delay = 200,
-  arrow = false,
-  children,
-}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [tooltipId] = useState(generateId);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const clearTimer = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  };
-
-  const showTooltip = useCallback(() => {
-    clearTimer();
-    timeoutRef.current = setTimeout(() => {
-      setIsVisible(true);
-    }, delay);
-  }, [delay]);
-
-  const hideTooltip = useCallback(() => {
-    clearTimer();
-    setIsVisible(false);
-  }, []);
-
-  useEffect(() => {
-    return () => { clearTimer(); };
-  }, []);
-
-  const childProps = {
-    onMouseEnter: (e: React.MouseEvent) => {
-      showTooltip();
-      const p = children.props as Record<string, any>;
-      if (p.onMouseEnter) p.onMouseEnter(e);
-    },
-    onMouseLeave: (e: React.MouseEvent) => {
-      hideTooltip();
-      const p = children.props as Record<string, any>;
-      if (p.onMouseLeave) p.onMouseLeave(e);
-    },
-    onFocus: (e: React.FocusEvent) => {
-      showTooltip();
-      const p = children.props as Record<string, any>;
-      if (p.onFocus) p.onFocus(e);
-    },
-    onBlur: (e: React.FocusEvent) => {
-      hideTooltip();
-      const p = children.props as Record<string, any>;
-      if (p.onBlur) p.onBlur(e);
-    },
-    'aria-describedby': isVisible ? tooltipId : undefined,
-  };
+  // Preserve child's ref if any, though React.cloneElement overrides ref if not careful.
+  // Assuming child is a simple element or forwards ref correctly.
+  const child = React.Children.only(children);
+  const childProps = mergeProps(child.props, triggerProps);
 
   return (
     <>
-      {React.cloneElement(children, childProps)}
-      {isVisible &&
-        createPortal(
-          <div
-            id={tooltipId}
-            role="tooltip"
-            className="beast-tooltip"
-            style={{
-              position: 'absolute',
-              zIndex: 1000,
-              backgroundColor: 'var(--beast-color-surface-variant)',
-              color: 'var(--beast-color-on-surface)',
-              padding: 'var(--beast-space-2) var(--beast-space-4)',
-              borderRadius: 'var(--beast-radius-md)',
-              fontSize: 'var(--beast-font-size-sm)',
-            }}
-          >
-            {content}
-            {arrow && <div className="beast-tooltip-arrow" />}
-          </div>,
-          document.body
-        )}
+      {React.cloneElement(child, {
+        ...childProps,
+        ref: triggerRef,
+      })}
+      {state.isOpen && typeof document !== 'undefined' && createPortal(
+        <Surface
+          {...mergeProps(ariaTooltipProps, overlayProps)}
+          ref={overlayRef as any}
+          className={`${styles.tooltip} beast-tooltip`}
+          data-placement={placement}
+          variant={variant === 'glass' ? 'glass' : 'solid'}
+          elevation={2}
+          radius="md"
+          border={variant === 'glass'}
+          style={{
+            ...overlayProps.style,
+            ...(variant === 'glass' && { backgroundColor: 'transparent', boxShadow: 'none' })
+          }}
+        >
+          {content}
+          {arrow && <div className={`${styles.arrow} beast-tooltip-arrow`} style={variant === 'glass' ? { display: 'none' } : undefined} />}
+        </Surface>,
+        document.body
+      )}
     </>
   );
 };

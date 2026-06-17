@@ -42,4 +42,16 @@ describe('Card Component', () => {
     expect(img).toHaveAttribute('src', 'http://example.com/image.jpg');
     expect(img.parentElement).toHaveClass('beast-card-media');
   });
+
+  it('passes variant="glass" prop to underlying Surface', () => {
+    const { container } = render(<Card variant="glass">Glass Card</Card>);
+    const card = container.firstChild as HTMLElement;
+    expect(card).toHaveClass('beast-surface-glass');
+  });
+
+  it('passes glaze prop to underlying Surface', () => {
+    const { container } = render(<Card variant="glass" glaze={{ frost: 'lg', tint: 'dark' }}>Glass Card</Card>);
+    const card = container.firstChild as HTMLElement;
+    expect(card).toHaveAttribute('style', expect.stringContaining('--beast-glass-frost: var(--beast-glass-frost-lg)'));
+  });
 });

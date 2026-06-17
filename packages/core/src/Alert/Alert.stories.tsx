@@ -47,8 +47,19 @@ export const Variants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '400px' }}>
       <Alert severity="success" variant="soft" title="Soft Variant">This is a soft alert.</Alert>
-      <Alert severity="success" variant="filled" title="Filled Variant">This is a filled alert.</Alert>
+      <Alert severity="success" variant="solid" title="Solid Variant">This is a solid alert.</Alert>
       <Alert severity="success" variant="outlined" title="Outlined Variant">This is an outlined alert.</Alert>
+    </div>
+  ),
+};
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', padding: '40px', background: 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)', borderRadius: '16px' }}>
+      <Alert severity="info" variant="glass" title="Glass Info">This is a glass info alert.</Alert>
+      <Alert severity="success" variant="glass" title="Glass Success">This is a glass success alert.</Alert>
+      <Alert severity="warning" variant="glass" title="Glass Warning">This is a glass warning alert.</Alert>
+      <Alert severity="danger" variant="glass" title="Glass Error">This is a glass error alert.</Alert>
     </div>
   ),
 };

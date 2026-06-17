@@ -12,6 +12,11 @@ export interface DialogProps extends AriaDialogProps {
   size?: 'sm' | 'md' | 'lg' | 'fullscreen';
   closeOnOverlayClick?: boolean;
   closeOnEscape?: boolean;
+  variant?: 'solid' | 'glass';
+  glaze?: {
+    frost?: 'sm' | 'md' | 'lg';
+    tint?: 'light' | 'dark' | 'none';
+  };
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
@@ -25,6 +30,8 @@ export const Dialog = ({
   size = 'md',
   closeOnOverlayClick = true,
   closeOnEscape = true,
+  variant = 'solid',
+  glaze,
   children,
   className,
   style,
@@ -91,6 +98,8 @@ export const Dialog = ({
             radius="lg"
             padding="6"
             aria-modal="true"
+            variant={variant === 'glass' ? 'glass' : 'solid'}
+            glaze={glaze}
           >
             {title && (
               <h2 {...titleProps} className={`beast-dialog-title ${styles.title}`}>

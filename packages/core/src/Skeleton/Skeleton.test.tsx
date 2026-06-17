@@ -12,7 +12,7 @@ describe('Skeleton Component', () => {
   });
 
   it('renders circular variant', () => {
-    const { container } = render(<Skeleton variant="circular" width={40} height={40} />);
+    const { container } = render(<Skeleton shape="circular" width={40} height={40} />);
     const skeleton = container.firstChild as HTMLElement;
     expect(skeleton).toHaveClass('beast-skeleton-circular');
     expect(skeleton.style.width).toBe('40px');
@@ -20,14 +20,14 @@ describe('Skeleton Component', () => {
   });
 
   it('renders rectangular variant', () => {
-    const { container } = render(<Skeleton variant="rectangular" height={200} />);
+    const { container } = render(<Skeleton shape="rectangular" height={200} />);
     const skeleton = container.firstChild as HTMLElement;
     expect(skeleton).toHaveClass('beast-skeleton-rectangular');
     expect(skeleton.style.height).toBe('200px');
   });
 
   it('renders multiple lines for text variant', () => {
-    const { container } = render(<Skeleton variant="text" lines={3} />);
+    const { container } = render(<Skeleton shape="text" lines={3} />);
     // When lines={3}, it should render a wrapper with 3 children
     expect(container.firstChild?.childNodes.length).toBe(3);
     const lastLine = container.firstChild?.lastChild as HTMLElement;
@@ -41,5 +41,11 @@ describe('Skeleton Component', () => {
 
     const { container: none } = render(<Skeleton animation="none" />);
     expect(none.firstChild).toHaveClass('beast-skeleton-none');
+  });
+
+  it('passes variant="glass" to underlying Frame', () => {
+    const { container } = render(<Skeleton variant="glass" />);
+    const skeleton = container.querySelector('.beast-frame-glass');
+    expect(skeleton).toBeInTheDocument();
   });
 });

@@ -93,4 +93,10 @@ describe('Select', () => {
     );
     expect(getByText('Invalid selection')).toBeInTheDocument();
   });
+
+  it('passes variant="glass" to underlying Surface trigger', () => {
+    const { getByRole } = render(<Select label="Country" options={options} variant="glass" />);
+    const trigger = getByRole('button');
+    expect(trigger).toHaveClass('beast-surface-glass');
+  });
 });

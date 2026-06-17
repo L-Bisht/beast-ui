@@ -1,16 +1,18 @@
 import React, { type ElementType, type ComponentPropsWithRef, forwardRef, type ReactNode } from 'react';
 import { Frame } from '../Frame/Frame.js';
+import styles from './Button.module.css';
 
 export interface ButtonOwnProps<E extends ElementType = ElementType> {
   as?: E;
-  variant?: 'filled' | 'outlined' | 'soft' | 'ghost';
-  color?: 'primary' | 'danger' | 'warning' | 'success';
+  variant?: 'solid' | 'outlined' | 'soft' | 'ghost' | 'glass';
+  color?: 'default' | 'primary' | 'danger' | 'warning' | 'success';
   size?: 'sm' | 'md' | 'lg';
   icon?: ReactNode;
   iconPosition?: 'start' | 'end';
   loading?: boolean;
   disabled?: boolean;
   fullWidth?: boolean;
+  glaze?: { frost?: 'sm' | 'md' | 'lg'; tint?: 'light' | 'dark' | 'none'; };
 }
 
 export type ButtonProps<E extends ElementType> = ButtonOwnProps<E> &
@@ -24,8 +26,8 @@ export const Button: ButtonComponent = forwardRef(
   <E extends ElementType = 'button'>(
     {
       as,
-      variant = 'filled',
-      color = 'primary',
+      variant = 'solid',
+      color = 'default',
       size = 'md',
       icon,
       iconPosition = 'start',
@@ -45,11 +47,14 @@ export const Button: ButtonComponent = forwardRef(
     const isIconOnly = Boolean(icon && !children);
 
     const classes = [
+      styles.button,
       'beast-button',
       `beast-button-${variant}`,
       `beast-button-${color}`,
       `beast-button-${size}`,
+      styles[size],
       isIconOnly && 'beast-button-icon-only',
+      isIconOnly && styles.iconOnly,
       fullWidth && 'beast-button-full-width',
       className,
     ].filter(Boolean).join(' ');
@@ -92,6 +97,7 @@ export const Button: ButtonComponent = forwardRef(
       <Frame
         as={Element as any}
         ref={ref}
+        variant={variant === 'glass' ? 'glass' : 'solid'}
         className={classes}
         disabled={isDisabled}
         aria-busy={loading ? 'true' : undefined}

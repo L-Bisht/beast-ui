@@ -2,6 +2,7 @@ import React, { useRef, createContext, useContext, type ReactNode } from 'react'
 import { useSelectState, Item, Section } from 'react-stately';
 import { useSelect, useButton, useListBox, useOption, HiddenSelect, useOverlayPosition } from 'react-aria';
 import { createPortal } from 'react-dom';
+import { Surface } from '../Surface/Surface.js';
 
 // --- Shared Core ---
 
@@ -113,6 +114,7 @@ export interface SelectProps {
   disabled?: boolean;
   required?: boolean;
   fullWidth?: boolean;
+  variant?: 'outlined' | 'filled' | 'glass';
 }
 
 // We type the Select component as an intersection so it can be called directly or as Select.Root
@@ -130,6 +132,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>((props, f
     disabled = false,
     required = false,
     fullWidth = false,
+    variant = 'outlined',
   } = props;
 
   const statelyProps = {
@@ -197,7 +200,10 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>((props, f
         name={props.label}
       />
 
-      <button
+      <Surface
+        as="button"
+        variant={variant === 'glass' ? 'glass' : 'solid'}
+        border={variant === 'outlined' || variant === 'glass'}
         {...buttonProps}
         ref={ref}
         className="beast-select-trigger"
@@ -206,8 +212,8 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>((props, f
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '8px 12px',
-          backgroundColor: 'transparent',
-          border: `1px solid ${isError ? 'var(--beast-color-danger, red)' : 'var(--beast-color-border, #ccc)'}`,
+          backgroundColor: variant === 'filled' ? 'var(--beast-color-surface-variant)' : variant === 'glass' ? undefined : 'transparent',
+          borderColor: isError ? 'var(--beast-color-danger, red)' : undefined,
           borderRadius: '4px',
           cursor: disabled ? 'not-allowed' : 'pointer',
           outline: 'none',
@@ -218,7 +224,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>((props, f
           {state.selectedItem ? state.selectedItem.rendered : placeholder}
         </span>
         <span aria-hidden="true" style={{ paddingLeft: '8px' }}>▼</span>
-      </button>
+      </Surface>
 
       {state.isOpen && typeof document !== 'undefined' && createPortal(
         <div
@@ -258,7 +264,7 @@ Select.displayName = 'Select';
 
 const SelectContext = createContext<any>(null);
 
-export const SelectRoot = ({ children, value, defaultValue, onChange, label, disabled, required }: any) => {
+export const SelectRoot = ({ children, value, defaultValue, onChange, label, disabled, required, variant = 'outlined' }: any) => {
   const items: any[] = [];
   
   // A helper to traverse React elements and build Stately items
@@ -323,7 +329,7 @@ export const SelectRoot = ({ children, value, defaultValue, onChange, label, dis
   const { labelProps, triggerProps, valueProps, menuProps } = useSelect(statelyProps, state, triggerRef);
 
   return (
-    <SelectContext.Provider value={{ state, triggerRef, labelProps, triggerProps, valueProps, menuProps, label }}>
+    <SelectContext.Provider value={{ state, triggerRef, labelProps, triggerProps, valueProps, menuProps, label, variant }}>
       <div className="beast-select-root" style={{ display: 'inline-flex', flexDirection: 'column', gap: '4px' }}>
         <HiddenSelect state={state} triggerRef={triggerRef} label={label} />
         {children}
@@ -335,9 +341,13 @@ export const SelectRoot = ({ children, value, defaultValue, onChange, label, dis
 export const SelectTrigger = React.forwardRef<HTMLButtonElement, any>((props, _ref) => {
   const ctx = useContext(SelectContext);
   const { buttonProps } = useButton(ctx.triggerProps, ctx.triggerRef);
+  const variant = ctx.variant || 'outlined';
   
   return (
-    <button
+    <Surface
+      as="button"
+      variant={variant === 'glass' ? 'glass' : 'solid'}
+      border={variant === 'outlined' || variant === 'glass'}
       {...buttonProps}
       ref={ctx.triggerRef}
       className="beast-select-trigger"
@@ -346,8 +356,7 @@ export const SelectTrigger = React.forwardRef<HTMLButtonElement, any>((props, _r
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '8px 12px',
-        backgroundColor: 'transparent',
-        border: `1px solid var(--beast-color-border, #ccc)`,
+        backgroundColor: variant === 'filled' ? 'var(--beast-color-surface-variant)' : variant === 'glass' ? undefined : 'transparent',
         borderRadius: '4px',
         cursor: 'pointer',
         outline: 'none',
@@ -356,7 +365,7 @@ export const SelectTrigger = React.forwardRef<HTMLButtonElement, any>((props, _r
     >
       {props.children}
       <span aria-hidden="true" style={{ paddingLeft: '8px' }}>▼</span>
-    </button>
+    </Surface>
   );
 });
 

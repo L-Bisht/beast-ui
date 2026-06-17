@@ -38,3 +38,15 @@ export const Colors: Story = {
     </div>
   ),
 };
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)', borderRadius: '16px' }}>
+      <div style={{ display: 'flex', gap: '24px' }}>
+        <Badge content="1" variant="glass" color="primary"><Avatar variant="glass" fallback="P" /></Badge>
+        <Badge content="!" variant="glass" color="danger"><Avatar variant="glass" fallback="D" /></Badge>
+        <Badge variant="dot" color="success"><Avatar variant="glass" fallback="S" /></Badge>
+      </div>
+    </div>
+  ),
+};

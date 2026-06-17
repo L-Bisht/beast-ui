@@ -13,6 +13,11 @@ export interface SurfaceOwnProps<E extends ElementType = ElementType> {
   radius?: 'none' | 'sm' | 'md' | 'lg' | 'full';
   padding?: string | number;
   border?: boolean;
+  variant?: 'solid' | 'glass';
+  glaze?: {
+    frost?: 'sm' | 'md' | 'lg';
+    tint?: 'light' | 'dark' | 'none';
+  };
 }
 
 export type SurfaceProps<E extends ElementType> = SurfaceOwnProps<E> &
@@ -30,6 +35,8 @@ export const Surface: SurfaceComponent = forwardRef(
       radius = 'md',
       padding,
       border = false,
+      variant = 'solid',
+      glaze,
       className,
       style,
       ...rest
@@ -41,6 +48,8 @@ export const Surface: SurfaceComponent = forwardRef(
     const customStyle: React.CSSProperties = {
       ...style,
       ...(padding !== undefined && { padding: getTokenValue(padding, 'space') }),
+      ...(glaze?.frost && { '--beast-glass-frost': `var(--beast-glass-frost-${glaze.frost})` } as any),
+      ...(glaze?.tint && { '--beast-glass-tint': `var(--beast-glass-tint-${glaze.tint})` } as any),
     };
 
     const combinedClassName = [
@@ -52,6 +61,8 @@ export const Surface: SurfaceComponent = forwardRef(
       styles[`radius-${radius}`],
       border && 'beast-surface-bordered',
       border && styles.bordered,
+      variant === 'glass' && 'beast-surface-glass',
+      variant === 'glass' && styles.glass,
       className,
     ].filter(Boolean).join(' ');
 

@@ -90,3 +90,14 @@ export const PolymorphicAs: Story = {
     </div>
   ),
 };
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)', borderRadius: '16px' }}>
+      <div style={{ display: 'flex', gap: '24px' }}>
+        <Frame variant="glass" padding={4} style={{ border: '1px solid rgba(255, 255, 255, 0.4)' }}><Box style={{ background: 'transparent' }}>Glass Frame</Box></Frame>
+        <Frame variant="glass" padding={4} glaze={{ frost: 'lg', tint: 'light' }} style={{ border: '1px solid rgba(255, 255, 255, 0.4)' }}><Box style={{ background: 'transparent' }}>Heavily Frosted Frame</Box></Frame>
+      </div>
+    </div>
+  ),
+};

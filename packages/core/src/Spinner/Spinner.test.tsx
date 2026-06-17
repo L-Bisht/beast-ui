@@ -38,4 +38,10 @@ describe('Spinner Component', () => {
     const spinner = getByRole('status');
     expect(spinner).toHaveClass('beast-spinner-primary');
   });
+
+  it('passes variant="glass" to underlying Frame', () => {
+    const { getByRole } = render(<Spinner variant="glass" />);
+    const spinner = getByRole('status');
+    expect(spinner).toHaveClass('beast-frame-glass');
+  });
 });

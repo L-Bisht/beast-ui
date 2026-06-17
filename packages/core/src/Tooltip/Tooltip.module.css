@@ -1,0 +1,63 @@
+.tooltip {
+  position: absolute;
+  z-index: 1000;
+  background-color: var(--beast-color-surface-variant, #f0f0f0);
+  color: var(--beast-color-on-surface, #000);
+  padding: var(--beast-space-2, 8px) var(--beast-space-4, 16px);
+  border-radius: var(--beast-radius-md, 4px);
+  font-size: var(--beast-font-size-sm, 14px);
+  box-shadow: var(--beast-shadow-md, 0 4px 6px rgba(0,0,0,0.1));
+  pointer-events: none; /* Tooltips shouldn't block pointer events */
+  max-width: 250px;
+  word-wrap: break-word;
+  animation: beast-tooltip-fade-in 0.2s ease-out forwards;
+}
+
+.arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--beast-color-surface-variant, #f0f0f0);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+/* Position-specific arrow styles */
+.tooltip[data-placement="top"] .arrow {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.05); /* shadow on bottom right of the rotated square */
+}
+
+.tooltip[data-placement="bottom"] .arrow {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  box-shadow: -2px -2px 2px rgba(0,0,0,0.05); /* shadow on top left of the rotated square */
+}
+
+.tooltip[data-placement="left"] .arrow {
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  box-shadow: 2px -2px 2px rgba(0,0,0,0.05); /* shadow on top right */
+}
+
+.tooltip[data-placement="right"] .arrow {
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  box-shadow: -2px 2px 2px rgba(0,0,0,0.05); /* shadow on bottom left */
+}
+
+@keyframes beast-tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

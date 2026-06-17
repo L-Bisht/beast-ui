@@ -65,4 +65,28 @@ describe('Menu Component', () => {
     fireEvent.click(getByRole('button', { name: 'Options' }));
     expect(getAllByRole('separator')).toHaveLength(1);
   });
+
+  it('passes variant="glass" prop to underlying Surface', () => {
+    const { getByRole } = render(
+      <Menu trigger={<button>Options</button>} variant="glass">
+        <Item key="1">One</Item>
+      </Menu>
+    );
+    fireEvent.click(getByRole('button', { name: 'Options' }));
+    const menu = getByRole('menu');
+    // The Surface wraps the menu ul, so it should be the parent element of ul or similar
+    // Actually we can check the Surface element which is rendered around the ul
+    expect(menu.parentElement).toHaveClass('beast-surface-glass');
+  });
+
+  it('passes glaze prop to underlying Surface', () => {
+    const { getByRole } = render(
+      <Menu trigger={<button>Options</button>} variant="glass" glaze={{ frost: 'lg', tint: 'dark' }}>
+        <Item key="1">One</Item>
+      </Menu>
+    );
+    fireEvent.click(getByRole('button', { name: 'Options' }));
+    const menu = getByRole('menu');
+    expect(menu.parentElement).toHaveAttribute('style', expect.stringContaining('--beast-glass-frost: var(--beast-glass-frost-lg)'));
+  });
 });

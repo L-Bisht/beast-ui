@@ -12,130 +12,118 @@
  *   - Borders:  gray-700 (subtle, not stark)
  */
 
-/* ─── Shared dark token values ─────────────────────────────────────────────
-   Defined as a SCSS-style comment block for clarity; actual declarations
-   live in the two selectors below. Both blocks are kept identical so the
-   test can verify each independently.                                       */
-
 /* 1. OS-triggered dark mode — respects .beast-light override */
 @media (prefers-color-scheme: dark) {
   :root:not(.beast-light) {
-    /* Primary (Violet) */
-    --beast-color-primary:       var(--beast-violet-400);
-    --beast-color-primary-light: var(--beast-violet-900);
-    --beast-color-primary-dark:  var(--beast-violet-200);
+    --beast-color-primary:       var(--beast-blue-400);
+    --beast-color-primary-light: var(--beast-blue-900);
+    --beast-color-primary-dark:  var(--beast-blue-300);
 
-    /* Secondary (Cyan) */
-    --beast-color-secondary:       var(--beast-cyan-400);
+    --beast-color-secondary:       var(--beast-cyan-300);
     --beast-color-secondary-light: var(--beast-cyan-900);
     --beast-color-secondary-dark:  var(--beast-cyan-200);
 
-    /* Danger (Red) */
     --beast-color-danger:       var(--beast-red-400);
     --beast-color-danger-light: var(--beast-red-900);
-    --beast-color-danger-dark:  var(--beast-red-200);
+    --beast-color-danger-dark:  var(--beast-red-300);
 
-    /* Warning (Orange) */
-    --beast-color-warning:       var(--beast-orange-300);
-    --beast-color-warning-light: var(--beast-orange-900);
-    --beast-color-warning-dark:  var(--beast-orange-200);
+    --beast-color-warning:       var(--beast-yellow-400);
+    --beast-color-warning-light: var(--beast-yellow-900);
+    --beast-color-warning-dark:  var(--beast-yellow-300);
 
-    /* Success (Green) */
     --beast-color-success:       var(--beast-green-400);
     --beast-color-success-light: var(--beast-green-900);
-    --beast-color-success-dark:  var(--beast-green-200);
+    --beast-color-success-dark:  var(--beast-green-300);
 
-    /* Info (Blue) */
     --beast-color-info:       var(--beast-blue-400);
     --beast-color-info-light: var(--beast-blue-900);
-    --beast-color-info-dark:  var(--beast-blue-200);
+    --beast-color-info-dark:  var(--beast-blue-300);
 
-    /* Surface — gray-800/900 range, never pure black */
+    --beast-color-default:       var(--beast-gray-400);
+    --beast-color-default-light: var(--beast-gray-800);
+    --beast-color-default-dark:  var(--beast-gray-300);
+
     --beast-color-surface:         var(--beast-gray-900);
-    --beast-color-on-surface:      var(--beast-gray-50);
+    --beast-color-on-surface:      var(--beast-gray-100);
     --beast-color-surface-variant: var(--beast-gray-800);
     --beast-color-border:          var(--beast-gray-700);
+    --beast-color-border-structural: var(--beast-gray-800);
     --beast-color-muted:           var(--beast-gray-400);
   }
 }
 
 /* 2. Forced dark — .beast-dark class on any ancestor element */
 .beast-dark {
-  /* Primary (Violet) */
-  --beast-color-primary:       var(--beast-violet-400);
-  --beast-color-primary-light: var(--beast-violet-900);
-  --beast-color-primary-dark:  var(--beast-violet-200);
+  --beast-color-primary:       var(--beast-blue-400);
+  --beast-color-primary-light: var(--beast-blue-900);
+  --beast-color-primary-dark:  var(--beast-blue-300);
 
-  /* Secondary (Cyan) */
-  --beast-color-secondary:       var(--beast-cyan-400);
+  --beast-color-secondary:       var(--beast-cyan-300);
   --beast-color-secondary-light: var(--beast-cyan-900);
   --beast-color-secondary-dark:  var(--beast-cyan-200);
 
-  /* Danger (Red) */
   --beast-color-danger:       var(--beast-red-400);
   --beast-color-danger-light: var(--beast-red-900);
-  --beast-color-danger-dark:  var(--beast-red-200);
+  --beast-color-danger-dark:  var(--beast-red-300);
 
-  /* Warning (Orange) */
-  --beast-color-warning:       var(--beast-orange-300);
-  --beast-color-warning-light: var(--beast-orange-900);
-  --beast-color-warning-dark:  var(--beast-orange-200);
+  --beast-color-warning:       var(--beast-yellow-400);
+  --beast-color-warning-light: var(--beast-yellow-900);
+  --beast-color-warning-dark:  var(--beast-yellow-300);
 
-  /* Success (Green) */
   --beast-color-success:       var(--beast-green-400);
   --beast-color-success-light: var(--beast-green-900);
-  --beast-color-success-dark:  var(--beast-green-200);
+  --beast-color-success-dark:  var(--beast-green-300);
 
-  /* Info (Blue) */
   --beast-color-info:       var(--beast-blue-400);
   --beast-color-info-light: var(--beast-blue-900);
-  --beast-color-info-dark:  var(--beast-blue-200);
+  --beast-color-info-dark:  var(--beast-blue-300);
 
-  /* Surface */
+  --beast-color-default:       var(--beast-gray-400);
+  --beast-color-default-light: var(--beast-gray-800);
+  --beast-color-default-dark:  var(--beast-gray-300);
+
   --beast-color-surface:         var(--beast-gray-900);
-  --beast-color-on-surface:      var(--beast-gray-50);
+  --beast-color-on-surface:      var(--beast-gray-100);
   --beast-color-surface-variant: var(--beast-gray-800);
   --beast-color-border:          var(--beast-gray-700);
+  --beast-color-border-structural: var(--beast-gray-800);
   --beast-color-muted:           var(--beast-gray-400);
 }
 
-/* 3. Forced light — .beast-light class (semantic.css :root already sets light
-   values; this override ensures a nested .beast-dark ancestor is cancelled) */
+/* 3. Forced light — .beast-light class */
 .beast-light {
-  /* Primary (Violet) */
-  --beast-color-primary:       var(--beast-violet-500);
-  --beast-color-primary-light: var(--beast-violet-100);
-  --beast-color-primary-dark:  var(--beast-violet-700);
+  --beast-color-primary:       var(--beast-blue-600);
+  --beast-color-primary-light: var(--beast-blue-100);
+  --beast-color-primary-dark:  var(--beast-blue-800);
 
-  /* Secondary (Cyan) */
-  --beast-color-secondary:       var(--beast-cyan-500);
-  --beast-color-secondary-light: var(--beast-cyan-100);
-  --beast-color-secondary-dark:  var(--beast-cyan-700);
+  --beast-color-secondary:       var(--beast-cyan-700);
+  --beast-color-secondary-light: var(--beast-cyan-200);
+  --beast-color-secondary-dark:  var(--beast-cyan-900);
 
-  /* Danger (Red) */
-  --beast-color-danger:       var(--beast-red-500);
+  --beast-color-danger:       var(--beast-red-600);
   --beast-color-danger-light: var(--beast-red-100);
-  --beast-color-danger-dark:  var(--beast-red-700);
+  --beast-color-danger-dark:  var(--beast-red-800);
 
-  /* Warning (Orange) */
-  --beast-color-warning:       var(--beast-orange-400);
-  --beast-color-warning-light: var(--beast-orange-100);
-  --beast-color-warning-dark:  var(--beast-orange-600);
+  --beast-color-warning:       var(--beast-yellow-500);
+  --beast-color-warning-light: var(--beast-yellow-100);
+  --beast-color-warning-dark:  var(--beast-yellow-700);
 
-  /* Success (Green) */
-  --beast-color-success:       var(--beast-green-500);
+  --beast-color-success:       var(--beast-green-600);
   --beast-color-success-light: var(--beast-green-100);
-  --beast-color-success-dark:  var(--beast-green-700);
+  --beast-color-success-dark:  var(--beast-green-800);
 
-  /* Info (Blue) */
-  --beast-color-info:       var(--beast-blue-500);
+  --beast-color-info:       var(--beast-blue-600);
   --beast-color-info-light: var(--beast-blue-100);
-  --beast-color-info-dark:  var(--beast-blue-700);
+  --beast-color-info-dark:  var(--beast-blue-800);
 
-  /* Surface */
+  --beast-color-default:       var(--beast-gray-500);
+  --beast-color-default-light: var(--beast-gray-100);
+  --beast-color-default-dark:  var(--beast-gray-700);
+
   --beast-color-surface:         var(--beast-gray-50);
   --beast-color-on-surface:      var(--beast-gray-900);
   --beast-color-surface-variant: var(--beast-gray-100);
-  --beast-color-border:          var(--beast-gray-200);
+  --beast-color-border:          var(--beast-gray-300);
+  --beast-color-border-structural: var(--beast-gray-200);
   --beast-color-muted:           var(--beast-gray-500);
 }

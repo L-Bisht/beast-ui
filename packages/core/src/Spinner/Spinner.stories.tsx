@@ -52,3 +52,17 @@ export const Colors: Story = {
     </div>
   ),
 };
+
+export const Glassmorphism: Story = {
+  render: () => (
+    <div style={{ padding: '40px', background: 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)', borderRadius: '16px' }}>
+      <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+        <Spinner variant="glass" color="primary" />
+        <Spinner variant="glass" color="on-surface" />
+        <div style={{ color: 'black', display: 'inline-flex' }}>
+          <Spinner variant="glass" color="inherit" />
+        </div>
+      </div>
+    </div>
+  ),
+};

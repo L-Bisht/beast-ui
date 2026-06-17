@@ -1,0 +1,32 @@
+.docs-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--beast-color-background);
+}
+
+.docs-main {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
+  background: radial-gradient(circle at top right, rgba(170, 59, 255, 0.05) 0%, transparent 40%);
+}
+
+.docs-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--beast-space-12) var(--beast-space-8) var(--beast-space-16);
+}
+
+@media (max-width: 768px) {
+  .docs-layout {
+    flex-direction: column;
+  }
+  .docs-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid var(--beast-color-border);
+  }
+}

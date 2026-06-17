@@ -64,4 +64,11 @@ describe('Tag', () => {
     const el = container.firstChild as HTMLElement;
     expect(el.className).toContain('beast-tag-sm');
   });
+
+  it('passes variant="glass" prop to underlying Frame', () => {
+    const { container } = render(<Tag variant="glass" color="primary">Glass</Tag>);
+    const el = container.firstChild as HTMLElement;
+    expect(el).toHaveClass('beast-frame-glass');
+    expect(el.className).toContain('beast-tag-glass');
+  });
 });

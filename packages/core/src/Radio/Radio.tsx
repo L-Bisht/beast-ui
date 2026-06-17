@@ -1,4 +1,5 @@
 import React, { forwardRef, useId, createContext, useContext, type InputHTMLAttributes, type ReactNode, useState } from 'react';
+import { Frame } from '../Frame/Frame.js';
 
 // --- Context ---
 interface RadioGroupContextValue {
@@ -118,6 +119,7 @@ RadioGroup.displayName = 'RadioGroup';
 export interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: ReactNode;
   value: string;
+  variant?: 'solid' | 'glass';
 }
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
@@ -127,6 +129,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       value,
       disabled: radioDisabled,
       checked: controlledChecked,
+      variant = 'solid',
       className,
       style,
       id: providedId,
@@ -176,7 +179,8 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             }}
             {...rest}
           />
-          <div
+          <Frame
+            variant={variant === 'glass' ? 'glass' : 'solid'}
             className="beast-radio-visual"
             style={{
               width: '20px',
@@ -198,7 +202,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
                 backgroundColor: 'var(--beast-color-primary)',
               }} />
             )}
-          </div>
+          </Frame>
         </div>
 
         {label && (
